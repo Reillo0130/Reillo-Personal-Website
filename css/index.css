@@ -33,7 +33,7 @@ body::before {
   height: 100%; /* 占满元素占满整个视口区域，实现全屏背景 */
 
   /* 1. 背景图基础设置 */
-  background-image: url("bg.webp"); /* 背景图片路径（使用WebP格式减少小体积） */
+    background-image: url("../assets/bg.webp"); /* 背景图片路径（使用WebP格式减少小体积） */
   background-repeat: no-repeat; /* 禁止图片重复平铺 */
   background-size: cover; /* 图片等比例缩放至覆盖全屏（可能裁剪边缘） */
   background-position: center; /* 图片在容器中居中显示 */

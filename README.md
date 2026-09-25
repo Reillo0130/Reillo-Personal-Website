@@ -18,15 +18,16 @@ A personal website for Reillo, built with plain HTML, CSS, and JavaScript.
 ## Project Structure
 
 - `index.html` - Main homepage
-- `index.css` - Homepage styles
+- `css/index.css` - Homepage styles
 - `photos.html` - Photos page
-- `photos.css` - Photos page styles
+- `css/photos.css` - Photos page styles
 - `changelog.html` - Website changelog
-- `changelog.css` - Changelog styles
-- `course-current.js` - Current-course and holiday timetable logic
-- `fadeUpAnimation.js` - Page entrance animations
-- `collapsible-container.js` - Expandable content interactions
-- `loader-container.js` - Loading screen behavior
+- `css/changelog.css` - Changelog styles
+- `js/course-current.js` - Current-course and holiday timetable logic
+- `js/fadeUpAnimation.js` - Page entrance animations
+- `js/collapsible-container.js` - Expandable content interactions
+- `js/loader-container.js` - Loading screen behavior
+- `assets/` - Images, favicons, and background assets
 
 ## Run Locally
 
