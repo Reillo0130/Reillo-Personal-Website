@@ -1,0 +1,440 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 页面整体样式 */
+body {
+    background-color: #f9fafb;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 页面标题样式 */
+.page-title {
+    text-align: center;
+    margin: 30px 0 50px;
+    color: #2d3748;
+    font-size: 2.2rem;
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #4299e1;
+    margin: 15px auto;
+}
+
+/* 简介文本样式 */
+.intro {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+}
+
+/* 时间线容器（核心布局） */
+.changelog-container {
+    position: relative;
+    padding-left: 30px;
+    margin-left: 15px;
+}
+
+/* 时间线中轴线 */
+.changelog-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+
+/* 年份标题样式 */
+.year-section {
+    margin: 60px 0 30px;
+    position: relative;
+}
+
+.year-title {
+    font-size: 1.8rem;
+    color: #2d3748;
+    margin-left: -45px;
+    margin-bottom: 5px;
+    background-color: #f9fafb;
+    display: inline-block;
+    padding-right: 15px;
+}
+
+/* 月份标题样式 */
+.month-section {
+    margin-bottom: 40px;
+    position: relative;
+    margin-left: 6px;
+}
+
+.month-title {
+    font-size: 1.3rem;
+    color: #4a5568;
+    margin: 25px 0 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* 月份标题前的圆点标记 */
+.month-title::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #4299e1;
+}
+
+/* 更新条目样式 */
+.update-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+/* 更新条目hover效果 */
+.update-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 更新条目前的短线标记 */
+.update-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 20px;
+    width: 16px;
+    height: 2px;
+    background-color: #4299e1;
+}
+
+/* 更新条目头部（日期+标签） */
+.update-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.update-date {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+/* 标签容器样式 */
+.update-tags {
+    display: flex;
+    gap: 8px;
+}
+
+/* 标签通用样式 */
+.tag {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* 不同类型标签颜色 */
+.tag.new {
+    background-color: #48bb78; /* 新增功能 - 绿色 */
+}
+
+.tag.optimize {
+    background-color: #4299e1; /* 优化样式 - 蓝色 */
+}
+
+.tag.fix {
+    background-color: #f59e0b; /* 修复问题 - 橙色 */
+}
+
+.tag.plan {
+    background-color: #9f7aea; /* 规划功能 - 紫色 */
+}
+
+.tag.del {
+    background-color: #fa5757; /* 删除功能 - 红色 */
+}
+
+/* 更新内容列表样式 */
+.update-content {
+    list-style-position: inside;
+    color: #4a5568;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.update-content li {
+    font-size: 0.95rem;
+}
+
+/* 使用说明样式 */
+.usage-note {
+    background-color: #f0f8fb;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 60px 0 40px;
+    border-left: 4px solid #4299e1;
+}
+
+.usage-note h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.usage-note ol {
+    list-style-position: inside;
+    color: #4a5568;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 响应式适配（移动端） */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .year-title {
+        font-size: 1.5rem;
+    }
+    
+    .month-title {
+        font-size: 1.2rem;
+    }
+    
+    .update-item {
+        padding: 15px;
+    }
+    
+    .update-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* 规划区域样式（与更新日志区分） */
+.plan-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin: 20px 0;
+}
+
+/* --- 核心优化：可折叠容器动画 --- */
+/* 历史更新整体容器（用于隔离定位） */
+.history-updates {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin: 20px 0;
+    overflow: hidden; /* 确保内容折叠时不溢出容器 */
+    position: relative;
+}
+
+/* 独立点击容器（扩大点击区域） */
+.history-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; /* 优化过渡曲线 */
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.history-toggle-container:hover {
+    background-color: #f1f5f9;
+}
+
+/* 折叠内容区域（核心动画优化） */
+.history-content {
+    max-height: 0;
+    overflow: hidden;
+    /* 同步所有动态属性的过渡：时长统一0.6s，曲线ease-in-out（更自然） */
+    transition: 
+        max-height 0.6s ease-in-out, 
+        padding 0.6s ease-in-out, 
+        margin 0.6s ease-in-out,
+        opacity 0.4s ease-in-out; /* 新增淡入淡出动画 */
+    padding: 0 20px; /* 折叠时保留左右内边距，避免内容贴边 */
+    margin: 0;
+    background-color: #f9fafb;
+    opacity: 0; /* 折叠时透明 */
+}
+
+/* 展开时样式（动画同步） */
+.history-content.expanded {
+    max-height: 2000px; /* 足够容纳内容，避免动画中断 */
+    padding: 20px; /* 展开时完整内边距 */
+    opacity: 1; /* 展开时完全显示 */
+}
+
+/* 时间线容器适配折叠状态（平滑过渡位置） */
+.history-container {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 重大事件容器样式 */
+.major-events {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin: 20px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 重大事件点击容器 */
+.major-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; /* 统一过渡曲线 */
+    background-color: #f9fafb;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.major-toggle-container:hover {
+    background-color: #f1f5f9;
+}
+
+/* 重大事件折叠内容（同历史更新动画逻辑） */
+.major-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 
+        max-height 0.6s ease-in-out, 
+        padding 0.6s ease-in-out, 
+        opacity 0.4s ease-in-out;
+    padding: 0 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+.major-content.expanded {
+    max-height: 1000px;
+    padding: 20px;
+    opacity: 1;
+}
+
+/* 重大事件条目样式 */
+.event-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.event-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 重大事件标签样式 */
+.tag.major {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+/* 返回按钮样式 */
+.back-to-home {
+    display: inline-block;
+    margin: 0 0 20px;
+    padding: 8px 16px;
+    background-color: #4299e1;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease-in-out; /* 统一过渡曲线 */
+}
+
+.back-to-home:hover {
+    background-color: #3182ce;
+}
+
+.back-to-home svg {
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* 加载动画样式 */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease-out;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    transform-origin: center;
+    animation: spin 1s linear infinite;
+    will-change: transform;
+}
+
+.loader-text {
+    margin-top: 20px;
+    color: #666;
+    font-size: 16px;
+    font-display: optional;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

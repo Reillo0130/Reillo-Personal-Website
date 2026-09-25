@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷洛Reillo的网站更新日志</title>
+    <link rel="stylesheet" href="changelog.css">
+    <script src="changelog-fadeUp.js"></script>
+    <script src="loader-container.js"></script> <!-- 加载动画脚本 -->
+</head>
+<body>
+    <!-- 加载动画界面：页面加载完成前显示 -->
+    <div class="loader-container">
+        <div class="loader"></div> <!-- 旋转加载动画 -->
+        <div class="loader-text">加载中...</div> <!-- 加载提示文本 -->
+    </div>
+
+    <!-- 返回首页按钮（添加在最新更新上方） -->
+    <a href="index.html" class="back-to-home">
+        <!-- 箭头图标 -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+        </svg>
+        返回首页
+    </a>
+    
+    <h1 class="page-title">网站更新日志</h1>
+    
+    <p class="intro">本页面记录网站全量迭代更新内容，涵盖功能新增、体验优化、问题修复、重大事件等维度，便于追踪网站版本迭代轨迹。</p>
+
+    <!-- 最新更新区域 -->
+    <div class="latest-update">
+        <h2 class="section-title">最新更新</h2>
+        <div class="changelog-container latest-container" id="latestContainer"></div>
+    </div>
+
+    <!-- 重大事件区域 -->
+    <div class="major-events">
+        <div class="major-toggle-container">
+            <h2 class="section-title">重大事件</h2>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="major-content" id="majorContent">
+            <div class="changelog-container major-container">
+                <div class="event-item">
+                    <div class="update-header">
+                        <span class="update-date" style="color: red;">2025年11月18日</span>
+                        <div class="update-tags">
+                            <span class="tag major">重要</span>
+                        </div>
+                    </div>
+                    <ul class="update-content">
+                        <li style="color: red;">因Cloudflare全球网络服务异常，导致网站短时无法访问</li>
+                    </ul>
+                </div>
+                <div class="event-item">
+                    <div class="update-header">
+                        <span class="update-date">2025年10月25日</span>
+                        <div class="update-tags">
+                            <span class="tag major">重要</span>
+                        </div>
+                    </div>
+                    <ul class="update-content">
+                        <li>网站正式上线，发布V1.0初始版本</li>
+                        <li>完成核心功能模块开发、测试及上线验收</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 历史更新区域（核心修改：2026年移至2025年上方） -->
+    <div class="history-updates">
+        <div class="history-toggle-container">
+            <h2 class="section-title">历史更新</h2>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="history-content" id="historyContent">
+            <div class="changelog-container history-container">
+                <!-- 2026年更新记录（移至顶部，倒序首位） -->
+                <div class="year-section">
+                    <h2 class="year-title">2026年</h2>
+
+                    <!-- 9月 -->
+                    <div class="month-section">
+                        <h3 class="month-title">9月</h3>
+                        <div class="update-item" data-update-date="2026-09-25" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">9月25日</span>
+                                <div class="update-tags">
+                                    <span class="tag new">功能新增</span>
+                                    <span class="tag optimize">体验优化</span>
+                                    <span class="tag fix">问题修复</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>新增每周课表展示，按周一至周日和节次整理课程安排</li>
+                                <li>新增基于现实星期、时间段和节次的当前课程自动高亮</li>
+                                <li>当前有课时显示蓝色高亮，无课时显示普通短横线</li>
+                                <li>当前无课节次显示“无课”并保留“进行中”状态提示</li>
+                                <li>新增周末、节假日和连续休息日课程处理逻辑</li>
+                                <li>节假日当天课程自动替换为短横线，当前节次状态同步更新</li>
+                                <li>课表底部新增“有课 / 无课”状态胶囊和节假日说明</li>
+                                <li>统一近期行程、课表和友情链接的标题与分隔线样式</li>
+                                <li>统一页面内容容器圆角，调整为更接近 Apple 风格的圆角卡片</li>
+                                <li>迭代首页导航栏 Liquid Glass 效果，加入透明背景、边缘反射和柔和折射质感</li>
+                                <li>修正导航栏 Logo 与导航按钮的字体、位置和视觉层级</li>
+                                <li>将导航栏及其内部按钮调整为更接近 Apple 风格的连续圆角样式</li>
+                                <li>优化页面容器底部留白，改善课表圆角与表格之间的间距</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 2月 -->
+                    <div class="month-section">
+                        <h3 class="month-title">2月</h3>
+<div class="update-item" data-update-date="2026-02-01" data-type="actual">
+    <div class="update-header">
+        <span class="update-date">2月01日</span>
+        <div class="update-tags">
+            <span class="tag optimize">架构优化</span>
+            <span class="tag fix">问题修复</span>
+            <span class="tag new">功能新增</span>
+        </div>
+    </div>
+    <ul class="update-content">
+        <li>修复HTML结构嵌套异常问题（month-section/year-section标签未闭合/层级错位）</li>
+        <li>移除冗余&lt;br&gt;标签，统一页面排版规范，提升代码可维护性</li>
+        <li>优化DOM结构层级设计，强化代码语义化特性</li>
+        <li>重构changelog.js业务逻辑，新增容错处理机制及标准化注释，提升代码健壮性</li>
+        <li>统一CSS类名命名及调用规范，保持代码风格一致性</li>
+        <!-- fadeUpAnimation.js 相关更新 -->
+        <li>新增fadeUpAnimation.js动画脚本文件，实现页面元素渐入动效</li>
+        <li>集成fadeUpAnimation动效至更新日志各核心模块，提升视觉体验</li>
+        <li>优化fadeUpAnimation动画执行参数，适配多终端屏幕尺寸展示效果</li>
+        <li>修正历史更新板块年份展示顺序，调整为倒序排列（最新年份在前），符合日志浏览规范</li>
+        <!-- changelog专属动画新增/修复记录 -->
+        <li>新增changelog.html专属动画脚本changelog-fadeUp.js，为页面核心元素实现从下往上渐入动效</li>
+        <li>优化changelog-fadeUp.js动画覆盖范围，纳入h1/h2/h3标题、所有p标签及页面核心模块</li>
+        <li>修复p class="intro"标签渐入动画未生效问题，通过精准类名匹配确保动画正常触发</li>
+        <!-- changelog跳转容器优化 -->
+        <li>修复加载动画在页面加载完成后未及时隐藏的问题，优化loader-container销毁逻辑</li>
+        <li>新增changelog.html在index.html的页面跳转优化</li>
+    </ul>
+</div>
+                    </div>
+                </div>
+
+                <!-- 2025年更新记录（移至2026年下方，倒序第二位） -->
+                <div class="year-section">
+                    <h2 class="year-title">2025年</h2>
+                    
+                    <!-- 12月 -->
+                    <div class="month-section">
+                        <h3 class="month-title">12月</h3>
+                        <div class="update-item" data-update-date="2025-12-08" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">12月08日</span>
+                                <div class="update-tags">
+                                    <span class="tag new">功能新增</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>新增行程规划模块「已完成（completed）」状态标识</li>
+                                <li>迭代行程规划状态枚举值，完善状态管理逻辑</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 11月 -->
+                    <div class="month-section">
+                        <h3 class="month-title">11月</h3>
+                        <div class="update-item" data-update-date="2025-11-20" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">11月20日</span>
+                                <div class="update-tags">
+                                    <span class="tag optimize">体验优化</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>优化更新日志模块「重大事件/历史更新」折叠/展开动画过渡效果，提升交互流畅度</li>
+                            </ul>
+                        </div>
+                        <div class="update-item" data-update-date="2025-11-19" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">11月19日</span>
+                                <div class="update-tags">
+                                    <span class="tag new">功能新增</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>新增更新日志页面「返回首页」快捷导航按钮</li>
+                            </ul>
+                        </div>
+                        <div class="update-item" data-update-date="2025-11-18" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">11月18日</span>
+                                <div class="update-tags">
+                                    <span class="tag new">功能新增</span>
+                                    <span class="tag optimize">体验优化</span>
+                                    <span class="tag fix">问题修复</span>
+                                    <span class="tag del">功能移除</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>移除container1侧边箭头跳转按钮，简化视觉层级</li>
+                                <li>新增container1内部向下跳转按钮，优化操作路径</li>
+                                <li>修正container1模块文案表述，提升内容准确性</li>
+                                <li>重构近期行程表展示样式，优化为表格布局提升可读性</li>
+                                <li>新增更新日志核心文件：changelog.html / changelog.css / changelog.js</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 10月 -->
+                    <div class="month-section">
+                        <h3 class="month-title">10月</h3>
+                        <div class="update-item" data-update-date="2025-10-25" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">10月25日</span>
+                                <div class="update-tags">
+                                    <span class="tag new">版本发布</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>发布网站V1.0初始版本，包含核心展示及交互功能</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 更新规划区域 -->
+    <div class="plan-updates">
+        <h2 class="section-title">更新规划</h2>
+        <div class="changelog-container plan-container">
+            <div class="month-section">
+                <div class="update-item">
+                    <div class="update-header">
+                        <span class="update-date">规划中</span>
+                        <div class="update-tags">
+                            <span class="tag plan">迭代规划</span>
+                        </div>
+                    </div>
+                    <ul class="update-content">
+                        <li>空容器模块规划新增快捷导航栏，优化页面跳转效率</li>
+                        <li>照片墙功能模块开发及上线</li>
+                        <li>规划新增日历组件、历史行程表、排班表等核心功能模块</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用说明区域 -->
+    <div class="usage-note">
+        <h3>使用说明</h3>
+        <ol>
+            <li>「最新更新/历史更新」板块仅展示已完成的实际迭代内容</li>
+            <li>「更新规划」板块独立展示待迭代功能，与已完成日志分离管理</li>
+            <li>「重大事件」板块记录网站里程碑式变更，支持折叠/展开交互</li>
+            <li>所有更新内容按“年-月-日”倒序排列，新增内容自动同步至「最新更新」板块</li>
+        </ol>
+    </div>
+
+    <!-- 引入动画及日志脚本 -->
+    <script src="fadeUpAnimation.js"></script>
+    <script src="changelog.js"></script>
+</body>
+</html>

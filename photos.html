@@ -1,0 +1,145 @@
+<!-- HTML5 文档声明，指定文档类型为HTML5 -->
+<!DOCTYPE html>
+<html lang="zh-CN"> <!-- 页面语言设置为简体中文（标准写法zh-CN） -->
+<head>    
+    <meta charset="utf-8"> <!-- 声明文档字符编码为UTF-8，确保中文正常显示 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!-- 浏览器兼容性设置，优先使用最新渲染引擎 -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"> <!-- 移动设备适配，禁止用户缩放 -->
+
+    <!-- SEO相关设置 -->
+    <meta name="description" content="不超过150个字符"> <!-- 页面描述，用于搜索引擎展示 -->
+    <meta name="keywords" content="furry,blog,雷洛Reillo,Reillo"> <!-- 页面关键词，帮助搜索引擎索引 -->
+    <meta name="author" content="雷洛Reillo, 3476938879@QQ.com"> <!-- 网页作者信息 -->
+    <meta name="robots" content="index,follow"> <!-- 允许搜索引擎抓取和跟踪链接 -->
+
+    <!-- 样式与脚本引入 -->
+    <link rel="stylesheet" href="photos.css" type="text/css"> <!-- 引入外部CSS样式表 -->
+    <link rel="shortcut icon" type="image/ico" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <!-- 引入外部JS脚本 -->
+    <script src="loader-container.js"></script>
+    <script src="collapsible-container.js"></script>
+    <script src="photos.js"></script>
+    <!-- 页面标题与图标 -->
+    <title>雷洛的照片墙</title> <!-- 浏览器标签页标题 -->
+</head>
+<body>
+    <!-- 加载动画界面：页面加载完成前显示 -->
+    <div class="loader-container">
+        <div class="loader"></div>
+        <div class="loader-text">加载中...</div>
+    </div>
+    
+    <!-- 导航栏区域 -->
+    <div class="header" id="header"> 
+        <header>
+            <!-- 网站Logo与链接 -->
+            <h4 class="logo">
+                <a href="https://space.bilibili.com/391463531">雷洛Reillo</a> <!-- 点击跳转到B站空间 -->
+            </h4>
+            
+            <!-- 导航菜单 -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">主页</a></li> <!-- 主页导航链接 -->
+                    <li><a href="#about">关于</a></li> <!-- 关于页面链接 -->
+                    <li><a href="photos.html">照片</a></li> <!-- 照片页面链接 -->
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container1" id="container1">
+        <p><h3>欢迎来到照片墙</h3></p>
+        <div class="divider-solid"></div> <!-- 水平分隔线 -->
+    </div>
+
+    <!-- 可折叠容器：照片分类展示 -->
+    <div class="collapsible-container">
+        <!-- 折叠面板标题栏 -->
+        <div class="collapsible-header">
+            <div class="header-content">
+                <div class="triangle"></div> <!-- 三角形展开/折叠指示器 -->
+                <h3 class="header-title">点击查看</h3>
+                <h3 class="title">照片分类</h3>
+            </div>
+            <div class="chevron"></div> <!-- 箭头展开/折叠指示器 -->
+        </div>
+        
+        <!-- 折叠面板内容区域 -->
+        <div class="collapsible-content">
+            <div class="content-inner">
+                <!-- 分类标签容器 -->
+        <!-- 新增：照片分类按钮容器 -->
+        <div class="photo-btn-group">
+            <button class="photo-btn">个人照片</button>
+            <button class="photo-btn">拍摄作品</button>
+        </div>
+            <!-- 分类说明 -->
+                <div class="content-highlight">
+                    <p class="highlight-text">
+                    个人照片：关于我的照片<br>
+                    拍摄作品：我拍摄的作品
+                    </p>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <div class="photos-gallery">
+                <p><h3>照片展示</h3></p>
+        
+        <!-- 个人照片区域 -->
+        <div class="photo-category self-photos" id="self-photos">
+            <h4>个人照片</h4>
+            <div class="divider-solid"></div>
+            <div class="photo-grid">
+                <!-- 示例照片（替换为实际图片路径） -->
+                <div class="photo-item">
+                    <img src="images/self/1.jpg" alt="个人照片1">
+                    <p>2024-01-01 · 日常随拍</p>
+                </div>
+                <div class="photo-item">
+                    <img src="images/self/2.jpg" alt="个人照片2">
+                    <p>2024-02-15 · 旅行记录</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 拍摄作品区域 -->
+        <div class="photo-category shoot-photos" id="shoot-photos">
+            <h4>拍摄作品</h4>
+            <div class="divider-solid"></div>
+            <div class="photo-grid">
+                <!-- 示例照片（替换为实际图片路径） -->
+                <div class="photo-item">
+                    <img src="images/shoot/1.jpg" alt="拍摄作品1">
+                    <p>2024-03-10 · 城市夜景</p>
+                </div>
+                <div class="photo-item">
+                    <img src="images/shoot/2.jpg" alt="拍摄作品2">
+                    <p>2024-04-20 · 自然风光</p>
+                </div>
+                <div class="photo-item">
+                    <img src="images/shoot/3.jpg" alt="拍摄作品3">
+                    <p>2024-05-05 · 人像创作</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="usage-note">
+        <h3>使用说明</h3>
+        <ol>
+            <li>最新更新/历史更新仅展示已完成的实际更新内容</li>
+            <li>更新规划单独列出，与已完成日志分离</li>
+            <li>所有更新按“年-月-日”倒序排列，新增内容自动成为最新更新</li>
+            <li>照片分类支持快速筛选，点击分类标签可聚焦对应内容</li>
+        </ol>
+    </div>
+
+</body>
+</html>

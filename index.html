@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+
+    <!-- SEO 核心设置（去重+规范） -->
+    <meta name="description" content="你好啊，这里是雷洛，全网同名雷洛Reillo 来自 中国 浙江省 温州市 喜欢小动物">
+    <meta name="keywords" content="furry,blog,雷洛Reillo,Reillo">
+    <meta name="author" content="雷洛Reillo, 3476938879@QQ.com">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph 协议（社交平台适配） -->
+    <meta property="og:title" content="雷洛的破烂小网站" />
+    <meta property="og:description" content="你好啊，这里是雷洛，全网同名雷洛Reillo 来自 中国 浙江省 温州市 喜欢小动物" />
+    <meta property="og:image" content="https://furryreillo.top/favicon.png" />
+    <meta property="og:url" content="https://furryreillo.top" />
+    
+    <!-- itemprop 属性（补充适配） -->
+    <meta itemprop="name" content="雷洛的破烂小网站" />
+    <meta itemprop="description" content="你好啊，这里是雷洛，全网同名雷洛Reillo 来自 中国 浙江省 温州市 喜欢小动物" />
+    <meta itemprop="image" content="https://furryreillo.top/favicon.png" />
+
+    <!-- 外部资源引入（保留所有 script src） -->
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script src="loader-container.js"></script>
+    <script src="const-text.js"></script>
+    <script src="Rolling interaction.js"></script>
+    <script src="downBtn.js"></script>
+    <script src="collapsible-container.js"></script>
+    <script src="checkHomePage.js"></script>
+    <script src="fadeUpAnimation.js"></script>
+    <script src="course-current.js" defer></script>
+
+    <!-- 网站图标 -->
+    <link rel="shortcut icon" type="image/ico" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <!-- 页面标题 -->
+    <title>雷洛的破烂小网站</title>
+</head>
+
+<body>
+    <!-- 加载动画界面 -->
+    <div class="loader-container">
+        <div class="loader"></div>
+        <div class="loader-text">加载中...</div>
+    </div>
+
+    <!-- 导航栏区域 -->
+    <div class="header" id="header"> 
+        <header class="glass-nav">
+            <h4 class="logo">
+                <a href="https://space.bilibili.com/391463531" target="_blank" rel="noopener noreferrer" class="subsite-link">雷洛Reillo</a>
+            </h4>
+
+            <nav class="glass-nav-menu" aria-label="主导航">
+                <ul>
+                    <li><a href="index.html" onclick="return checkHomePage()">主页</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="photos.html">照片</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="top-section">
+        <!-- 个人信息容器 -->
+        <div class="container1" id="container1">
+            <img src="avatra.webp" alt="雷洛的头像" class="avatra-img">
+            <h1>雷洛Reillo</h1>
+            <div id="type-text"></div>
+            
+            <div class="divider-solid"></div>
+            
+            <p><h3>欢迎来到雷洛的小窝</h3></p>
+            <p>你好啊 这里是雷洛，全网同名 雷洛Reillo</p>
+            <p>来自<a href="https://ditu.amap.com/city?citycode=330300"> 中国 浙江省 温州市</a></p>
+            <p>喜欢小动物</p>
+            
+            <p>
+                成分比较复杂 包括但不限于<br>
+                运动类：自行车 游泳 登山<br>
+                科技类:IT 摄影 电脑 手机 无人机 服务器 垃圾佬<br>
+                <br>
+                相机: 索尼A7R5 / 佳能EOS M50 <br>
+                主力机: 锐龙5600 + RX7600 <br>
+                服务器: Threadripper 1950X / 2x E5 2650L V2 <br>
+                DELL Optiplex 5050 sff / E5 2699 V3(拟定)<br>
+            </p>
+            
+            <p>计算机系学生，正在边实习边学习计算机知识</p>
+            
+            <div class="target-section" id="targetSection"></div>
+            
+            <p>世界很大，只是我的知识有限，我要学的东西还有很多，我会继续学习的</p>
+            <p>本网站服务由  DELL Optiplex 5050 sff 提供</p><br>
+            
+            <!-- 向下滚动按钮 -->
+            <button class="round-btn" id="downBtn">
+                <span class="arrow">⌵</span>
+            </button>
+        </div>
+
+        <!-- 网站建设提示容器 -->
+        <div class="container2">
+            <h3>网站还在建设中</h3><br>
+            <p>- 我的能力有限，如果你想优化我的代码，可以联系我！</p><br>
+        </div>
+        
+        <!-- 可折叠容器：技术栈展示 -->
+        <div class="collapsible-container" id="tech-stack-container">
+            <div class="collapsible-header">
+                <div class="header-content">
+                    <div class="triangle"></div>
+                    <h3 class="header-title">点击查看</h3>
+                    <h3 class="title">技术栈</h3>
+                </div>
+                <div class="chevron"></div>
+            </div>
+            <div class="collapsible-content">
+                <div class="content-inner">
+                    <div class="tags-container">
+                        <div class="tag-item" id="jingtong">精通</div>
+                        <div class="tag-item" id="yingyong">应用</div>
+                        <div class="tag-item" id="liaojie">了解</div>
+                        <div class="tag-item" id="buhui">不会</div>
+                    </div>  
+                    
+                    <p class="content-text"></p>
+                    <h3>前端</h3>
+                    <div class="tags-container">
+                        <div class="tag-item" id="yingyong">JavaScript</div>
+                        <div class="tag-item" id="yingyong">CSS3</div>
+                    </div>
+                    
+                    <p class="content-text"></p>
+                    <h3>后端</h3>
+                    <div class="tags-container">
+                        <div class="tag-item" id="buhui">Spring</div>
+                        <div class="tag-item" id="buhui">Hibernate</div>
+                    </div>
+                    
+                    <p class="content-text"></p>
+                    <h3>系统</h3>
+                    <div class="tags-container">
+                        <div class="tag-item" id="jingtong">Windows</div>
+                        <div class="tag-item" id="yingyong">MacOS</div>
+                        <div class="tag-item" id="liaojie">Linux</div>
+                        <div class="tag-item" id="liaojie">Debian</div>
+                    </div>
+                    
+                    <p class="content-text"></p>
+                    <h3>工具</h3>
+                    <div class="tags-container">
+                        <div class="tag-item" id="yingyong">PyCharm</div>
+                        <div class="tag-item" id="liaojie">WebStorm</div>
+                        <div class="tag-item" id="buhui">IntelliJ IDEA</div>
+                        <div class="tag-item" id="buhui">CLion</div>
+                    </div>
+                    <div class="tags-container">
+                        <div class="tag-item" id="yingyong">Visual Studio</div>
+                        <div class="tag-item" id="yingyong">Visual Studio Code</div>
+                        <div class="tag-item" id="buhui">Typora</div>
+                    </div>
+                    
+                    <p class="content-text"></p>
+                    <h3>语言</h3>
+                    <div class="tags-container">
+                        <div class="tag-item" id="yingyong">Python</div>
+                        <div class="tag-item" id="liaojie">C</div>
+                        <div class="tag-item" id="liaojie">C++</div>
+                        <div class="tag-item" id="liaojie">Java</div>
+                    </div>
+                    <div class="tags-container">
+                        <div class="tag-item" id="yingyong">HTML5</div>
+                        <div class="tag-item" id="liaojie">Markdown</div>
+                    </div>
+
+                    <p class="content-text"></p>
+                    <h3>其他</h3>
+                    <div class="tags-container">
+                        <div class="tag-item" id="jingtong">疯狂星期四</div>
+                    </div>
+                    
+                    <div class="content-highlight">
+                        <p class="highlight-text">实际上这个人写的都是使山代码!</p>
+                        <p class="highlight-text">后端苦手/前端享受者</p>
+                        <p class="highlight-text">在学了在学了，希望哪天能看到全精通</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- 可折叠容器：网站更新日志（添加a标签包裹实现跳转） -->
+    <a href="changelog.html" class="changelog-link">
+                <div class="collapsible-container" id="changelog-container">
+                    <div class="collapsible-header">
+                        <div class="header-content">
+                            <p></p>
+                            <p></p>
+                            <h3 class="header-title">点击查看</h3>
+                            <h3 class="title">网站更新日志</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        <!-- 近期行程容器 -->
+        <div class="container3">
+            <h3>近期行程</h3>
+            <hr class="vertical-line">
+            <div class="table-wrap">
+                <table class="itinerary-table">
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>类型</th>
+                            <th>项目名称</th>
+                            <th>地区</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025.09</td>
+                            <td>休息</td>
+                            <td>暂无安排</td>
+                            <td>温州</td>
+                            <td>规划中</td>
+                        </tr>
+                        <tr>
+                            <td>2025.10</td>
+                            <td>学习</td>
+                            <td>前端学习</td>
+                            <td>线上</td>
+                            <td>进行中</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 课表容器 -->
+        <div class="course-table-container">
+            <h3>课表</h3>
+            <hr class="vertical-line">
+            <div class="table-wrap">
+                <table class="timetable-table">
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>周一</th>
+                            <th>周二</th>
+                            <th>周三</th>
+                            <th>周四</th>
+                            <th>周五</th>
+                            <th>周六</th>
+                            <th>周日</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1-2节</td>
+                            <td>程序设计</td>
+                            <td>高等数学</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>3-4节</td>
+                            <td>—</td>
+                            <td>军事理论</td>
+                            <td>—</td>
+                            <td>思想道德</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>5-6节</td>
+                            <td>毛概</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>职业发展</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>7-8节</td>
+                            <td>体育健康</td>
+                            <td>—</td>
+                            <td>思想道德</td>
+                            <td>创新创业<br>心理健康</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>9-10节</td>
+                            <td>形势政策</td>
+                            <td>网页设计</td>
+                            <td>网页设计</td>
+                            <td>程序设计</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>11节</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>计算机网络</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="course-status-legend" aria-label="课表状态说明">
+                <span class="status-pill status-pill-course">有课</span>
+                <span class="status-pill status-pill-free">无课</span>
+                <span class="holiday-note">节假日会自动将当日课程替换为无课</span>
+            </div>
+        </div>
+
+        <div class="Friendship-Links-container">
+            <h3>友情链接</h3>
+            <hr class="vertical-line">
+            <div class="friend-links-list">
+                <div class="friend-link-item">
+                    <a href="https://www.natyphoon.top/furry/" target="_blank" class="friend-link">
+                        <img src="https://www.natyphoon.top/furry/img/favicon/" alt="站点图标" class="link-favicon">
+                        纳纳
+                    </a>
+                </div>
+                <div class="friend-link-item">
+                    <a href="https://blog.mcxiafeng.top" target="_blank" class="friend-link">
+                        <img src="xiafeng-favicon.webp" alt="站点图标" class="link-favicon">
+                        夏枫
+                    </a>
+                </div>
+                <div class="friend-link-item">
+                    <a href="https://gallery.pinkcandy.top/" target="_blank" class="friend-link">
+                        <img src="https://gallery.pinkcandy.top/icon.ico" alt="站点图标" class="link-favicon">
+                        周周的画廊
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 版权信息 -->
+        <div class="Copyright-container">
+            <div class="Copyright"><p>© 2025 雷洛Reillo </p></div>
+        </div>
+</body>
+</html>

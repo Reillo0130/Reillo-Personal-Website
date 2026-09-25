@@ -1,0 +1,582 @@
+@charset "UTF-8"; /* 声明CSS文件编码为UTF-8，确保中文等字符正常显示 */
+/* ---CSS全局全局样式--- */
+/* 超链接样式 */
+a {
+    color: inherit; /* 超链接颜色继承父元素的颜色，不使用默认蓝色 */
+    text-decoration: none; /* 去除超链接默认的下划线 */
+}
+
+/* 图片不溢出 */
+img{
+    max-width: 80%; /* 图片最大宽度限制为父元素的80%，防止图片过大溢出容器 */
+    height: auto; /* 高度自动计算，保持图片原始宽高比例，避免变形 */
+}
+
+/* ---Body样式设置--- */
+body {
+    font-family: source-sans-pro; /* 指定页面文本使用source-sans-pro字体显示 */
+    background-color: #ffffff; /* 页面背景色设置为白色 */
+    overflow: auto; /* 当内容超出视口时，自动显示滚动条 */
+    min-height: auto; /*  body元素的最小高度自动适应，由内容撑开 */
+    margin: 0 auto; /* 水平方向居中对齐，上下外边距为0 */
+    height: auto; /* 高度自动，由内容决定 */
+}
+
+/* 页面背景图优化方案：降低对LCP（最大内容绘制）的影响 */
+body::before {
+  content: ""; /* 伪元素伪元素必须设置的空内容，使元素元素才能生效 */
+  position: fixed; /* 固定定位，使背景图不随页面滚动移动 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* 占满元素占满整个视口区域，实现全屏背景 */
+
+  /* 1. 背景图基础设置 */
+  background-image: url("bg.webp"); /* 背景图片路径（使用WebP格式减少小体积） */
+  background-repeat: no-repeat; /* 禁止图片重复平铺 */
+  background-size: cover; /* 图片等比例缩放至覆盖全屏（可能裁剪边缘） */
+  background-position: center; /* 图片在容器中居中显示 */
+
+  /* 视觉样式效果 */
+  filter: blur(5px); /* 图片模糊处理（5px模糊度） */
+  transform: scale(1.05); /* 图片轻微放大1.05倍，解决模糊化后边缘空白问题 */
+  z-index: -1; /* 层级设为-1，确保在所有内容下方，不遮挡主内容 */
+
+  /* 2. 延迟渲染优化：避免阻塞LCP绘制 */
+  will-change: transform, filter; /* 提示浏览器该元素后续有变换/滤镜操作，提前准备GPU资源，不阻塞初始绘制 */
+
+  /* 3. 渲染范围限制：减少少响布局响主内容 */
+  contain: layout paint; /* 告诉浏览器：该元素的布局和绘制制不会影响外部，独立优化渲染，减少重排重绘范围 */
+}
+/* ---加载动画样式--- */
+.loader-container {
+    position: fixed; /* 固定定位，全屏覆盖 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 宽度占满屏幕 */
+    height: 100vh; /* 高度占满视口 */
+    background: #fff; /* 白色背景，覆盖页面内容 */
+    display: flex; /* 使用flex布局 */
+    flex-direction: column; /* 子元素垂直排列 */
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 水平居中 */
+    z-index: 9999; /* 层级最高，确保在最上层显示 */
+    transition: opacity 0.5s ease; /* 透明度变化的过渡动画，用于加载完成后隐藏 */
+}
+
+/* 加载动画-圆形旋转动画样式（优化LCP影响） */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    /* 优化动画性能：使用transform-origin确保旋转中心正确，避免布局偏移 */
+    transform-origin: center;
+    animation: spin 1s linear infinite;
+    /* 标记为低优先级动画，不阻塞主线程 */
+    will-change: transform;
+}
+
+/* 加载动画文本样式 */
+.loader-text {
+    margin-top: 20px;
+    color: #666;
+    font-size: 16px;
+    /* 文本渲染优化：避免加载时的字体闪烁 */
+    font-display: optional;
+}
+
+/* 旋转动画定义（优化性能） */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    /* 仅使用transform属性，避免触发重排重绘，提升动画性能 */
+}
+
+/* 加载加载容器额外优化：减少对LCP元素的阻塞 */
+.loader-container {
+    /* 确保加载动画在LCP元素绘制前完成或快速隐藏 */
+    transition: opacity 0.3s ease-out; /* 缩短过渡时间，加快消失速度 */
+}
+
+/* ---导航页样式--- */
+header {
+    position: fixed; /* 固定定位，不随页面滚动 */
+    z-index: 9998; /* 层级次高，确保在内容上方但低于加载动画 */
+    top: 10px; /* 距离顶部10px */
+    left: 6px; /* 距离左侧6px */
+    right: 6px; /* 距离右侧6px */
+    width: 92%; /* 宽度为92% */
+    min-width: 200px; /* 最小宽度200px，防止过窄 */
+    margin: 0 auto; /* 水平居中 */
+    height: 55px; /* 高度55px */
+    border-radius: 10px; /* 圆角10px */
+    background-color: #42b1f1; /* 背景色为浅蓝色 */
+    border-bottom: 0px solid #2C9AB7; /* 底部边框为0，即无下边框 */
+    opacity: 1; /* 完全不透明 */
+}
+
+/* 网站logo样式 */
+.logo {
+    color: #ffffff; /* 文字颜色为白色 */
+    font-weight: bold; /* 字体加粗 */
+    text-align: undefined; /* 未定义对齐方式（可能为冗余代码） */
+    width: 20%; /* 宽度占20% */
+    float: left; /* 左浮动 */
+    margin-top: 15px; /* 上外边距15px */
+    margin-left: 25px; /* 左外边距25px */
+    letter-spacing: 0px; /* 字间距0px */
+    margin-bottom: 20px; /* 下外边距20px */
+    font-weight: bold; /* 重复设置字体加粗 */
+    transition: all 0.3s linear; /* 所有属性变化时的过渡动画，0.3秒线性过渡 */
+}
+
+/* logo hover效果 */
+.logo:hover {
+    color: #3498db; /* 鼠标悬停时文字颜色变为深蓝色 */
+}
+
+/* 导航栏样式 */
+nav {
+    float: right; /* 右浮动 */
+    width: 50%; /* 宽度占50% */
+    text-align: right; /* 文本右对齐 */
+    margin-right: 25px; /* 右外边距25px */
+}
+
+/* 导航列表样式 */
+header nav ul {
+    list-style: none; /* 去除列表默认样式（圆点） */
+    float: right; /* 右浮动 */
+}
+
+/* 导航列表项样式 */
+nav ul li {
+    float: left; /* 左浮动，使列表项横向排列 */
+    color: #FFFFFF; /* 文字颜色为白色 */
+    font-size: 14px; /* 字体大小14px */
+    text-align: left; /* 文本左对齐 */
+    margin-right: 20px; /* 右外边距20px，项之间间距 */
+    letter-spacing: 2px; /* 字间距2px */
+    font-weight: bold; /* 字体加粗 */
+    transition: all 0.3s linear; /* 所有属性变化时的过渡动画 */
+    white-space: nowrap; /* 文本不换行，确保内容在一行显示 */
+}
+
+/* 导航链接样式 */
+ul li a {
+    color: #FFFFFF; /* 链接文字颜色为白色 */
+    text-decoration: none; /* 去除链接下划线 */
+    white-space: nowrap; /* 链接文本不换行 */
+}
+
+/* 导航项hover效果 */
+ul li:hover a {
+    color: #3498db; /* 鼠标悬停时链接文字颜色变为深蓝色 */
+}
+
+/* 响应式适配：屏幕宽度小于等于768px时 */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column; /* 列表项改为垂直排列 */
+        gap: 10px; /* 项之间垂直间距10px */
+    }
+}
+/* 容器通用样式：包括多个容器和友情链接容器 */
+.container,
+.container1,
+.container2,
+.container3{
+    position: relative; /* 相对定位，作为子元素绝对定位的参考 */
+    max-width: 100%; /* 最大宽度不超过父元素 */
+    min-width: 200px; /* 最小宽度200px，确保小屏幕下不致过窄 */
+    width: 70%; /* 容器宽度为父元素的70% */
+    height: 150px; /* 容器默认高度150px */
+    background: rgba(255, 255, 255, 0.7); /* 白色背景，70%透明度 */
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15); /* 轻微阴影，增强立体感 */
+    border-radius: 10px; /* 10px圆角边框 */
+    margin: 0 auto; /* 水平居中 */
+    padding: 20px 0; /* 上下内边距20px，左右0 */
+    padding-bottom: 20px; /* 底部内边距20px，控制内容与底部距离 */
+    margin-bottom: 20px; /* 底部外边距20px，容器间垂直间隔 */
+    transition: all 1s ease; /* 所有属性变化时的过渡动画，1秒缓动 */
+    transition: opacity 0.4s ease; /* 透明度过渡动画，0.4秒缓动（注：与上一行transition有重复，后者会覆盖前者相同属性） */
+    z-index: 0; /* 层级0，确保在背景之上、其他元素之下 */
+}
+.container1{
+    margin-top: 100px;
+}
+.container1 h3{
+    text-align: center; /* 标题居中 */
+    font-size: 20px; /* 字体大小20px */
+    margin-bottom: -25px; /* 底部外边距-25px，向上偏移 */
+    margin-top: -20px; /* 顶部外边距-20px，向上偏移 */
+}
+.photos-gallery h3{
+    text-align: center; /* 标题居中 */
+    font-size: 20px; /* 字体大小20px */
+    margin-bottom: 10px; /* 底部外边距-25px，向上偏移 */
+    margin-top: -10px; /* 顶部外边距-20px，向上偏移 */
+
+}
+.divider-solid {
+    width: 80%; /* 宽度80% */
+    height: 2px; /* 高度2px，线的粗细 */
+    background: #3498db; /* 背景色为深蓝色，即线的颜色 */
+    margin: 0 auto; /* 水平居中 */
+    margin-top: 35px; /* 顶部外边距10px */
+    margin-bottom: 10px; /* 底部外边距10px */
+}
+/* 可折叠容器整体样式 */
+.collapsible-container {
+    position: relative; /* 相对定位，作为子元素绝对定位的参考 */
+    margin-bottom: 20px; /* 底部外边距20px，容器间垂直间隔 */
+    background: rgba(255, 255, 255, 0.7); /* 白色背景，70%透明度 */
+    border-radius: 8px; /* 8px圆角边框 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 轻微阴影，增强层次感 */
+    overflow: hidden; /* 溢出内容隐藏，确保圆角生效 */
+    margin: 0 auto 20px; /* 水平居中，底部外边距20px */
+    max-width: 100%; /* 最大宽度不超过父元素 */
+    min-width: 200px; /* 最小宽度200px，小屏幕下不致过窄 */
+    width: 70%; /* 容器宽度为父元素的70% */
+    transition: opacity 0.4s ease; /* 透明度过渡，0.4秒缓动 */
+}
+
+/* 可折叠容器标题栏样式 */
+.collapsible-header {
+    display: flex; /* 启用flex布局 */
+    align-items: center; /* 子元素垂直居中 */
+    justify-content: space-between; /* 子元素两端对齐，标题在左，指示器在右 */
+    padding: 16px; /* 内边距16px */
+    cursor: pointer; /* 鼠标悬浮时显示指针，提示可点击折叠/展开 */
+    transition: background-color 0.2s ease; /* 背景色过渡，0.2秒缓动 */
+}
+
+/* 标题栏悬停效果 */
+.collapsible-header:hover {
+    background-color: #f1f5f9; /* 悬停时背景变为浅灰色 */
+}
+
+/* 标题栏左侧内容容器 */
+.header-content {
+    display: flex; /* 启用flex布局 */
+    align-items: center; /* 子元素垂直居中 */
+    gap: 12px; /* 子元素之间间距12px */
+}
+
+/* 标题栏标题文本样式 */
+.header-title {
+    font-size: 18px; /* 字体大小18px */
+    font-weight: 500; /* 字体粗细为500（中等加粗） */
+    color: #1e293b; /* 文本颜色为深灰色 */
+}
+
+/* 三角形展开/折叠指示器样式 */
+.triangle {
+    width: 0;
+    height: 0;
+    /* 通过透明边框组合绘制三角形，此时为向上的三角形 */
+    border-left: 6px solid transparent; /* 左侧透明边框 */
+    border-right: 6px solid transparent; /* 右侧透明边框 */
+    border-top: 6px solid #64748b; /* 顶部深色边框，形成三角形底边 */
+    transition: transform 0.3s ease; /* 旋转过渡，0.3秒缓动（用于折叠时旋转） */
+}
+
+/* 箭头图标样式（通过CSS伪元素绘制） */
+.chevron {
+    width: 16px; /* 图标宽度16px */
+    height: 16px; /* 图标高度16px */
+    position: relative; /* 相对定位，作为伪元素定位参考 */
+    color: #64748b; /* 图标颜色为深灰色 */
+    transition: transform 0.3s ease; /* 旋转过渡，0.3秒缓动（用于折叠时旋转） */
+}
+
+/* 箭头右侧上半部分（通过伪元素before绘制） */
+.chevron::before {
+    content: ''; /* 伪元素必须有content属性，此处为空 */
+    position: absolute; /* 绝对定位 */
+    width: 8px; /* 线条宽度8px */
+    height: 2px; /* 线条高度2px */
+    background-color: currentColor; /* 背景色继承父元素color（深灰色） */
+    transform: rotate(45deg); /* 旋转45度，形成箭头右上部分 */
+    top: 7px; /* 距离顶部7px */
+    right: 2px; /* 距离右侧2px */
+}
+
+/* 箭头右侧下半部分（通过伪元素after绘制） */
+.chevron::after {
+    content: ''; /* 伪元素空内容 */
+    position: absolute; /* 绝对定位 */
+    width: 8px; /* 线条宽度8px */
+    height: 2px; /* 线条高度2px */
+    background-color: currentColor; /* 背景色继承父元素color */
+    transform: rotate(-45deg); /* 旋转-45度，形成箭头右下部分 */
+    top: 7px; /* 距离顶部7px */
+    right: 8px; /* 距离右侧8px */
+}
+/* 可折叠容器内容区域样式（核心控制展开/收起） */
+.collapsible-content {
+  max-height: 0; /* 初始高度为0，隐藏内容 */
+  opacity: 0; /* 初始透明度为0，隐藏内容 */
+  overflow: hidden; /* 溢出内容隐藏，避免内容泄露 */
+  /* 过渡动画：高度和透明度同时变化，0.4秒缓动，实现平滑展开/收起 */
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+/* 内容区域内部容器样式 */
+.content-inner {
+  padding: 16px; /* 内边距16px，保证内容与边框距离 */
+  border-top: 1px solid #ffffff; /* 顶部1px白色边框，分隔标题栏与内容 */
+  transition: opacity 0.4s ease; /* 透明度过渡，0.4秒缓动 */
+}
+
+/* 内容区域文本样式 */
+.content-text {
+  color: #334155; /* 文本颜色为深灰色 */
+  margin-bottom: 16px; /* 底部外边距16px，与下方元素间距 */
+  line-height: 1.5; /* 行高1.5，提升文字可读性 */
+}
+
+/* 内容区域高亮块样式 */
+.content-highlight {
+  background: rgba(255, 255, 255, 0.7); /* 白色背景，70%透明度 */
+  padding: 12px; /* 内边距12px */
+  border-radius: 6px; /* 6px圆角边框 */
+  margin-bottom: 16px; /* 底部外边距16px，与下方元素间距 */
+}
+
+/* 高亮块内文本样式 */
+.highlight-text {
+  color: #000000; /* 文本颜色为黑色 */
+  font-size: 14px; /* 字体大小14px */
+  line-height: 1.5; /* 行高1.5 */
+  text-align: center; /* 文本水平居中 */
+}
+
+/* 内容区域图片样式 */
+.content-image {
+  width: 100%; /* 图片宽度占满父容器 */
+  height: auto; /* 高度自动，保持图片原始比例 */
+  border-radius: 6px; /* 6px圆角，使图片更圆润 */
+  margin-top: 16px; /* 顶部外边距16px，与上方元素间距 */
+}
+
+/* 标签容器样式（横向排列） */
+.tags-container {
+  display: flex; /* 启用Flex布局，实现标签横向排列 */
+  flex-wrap: wrap; /* 标签超出容器宽度时自动换行 */
+  gap: 8px; /* 标签之间的间距8px */
+  margin: 16px 0; /* 上下外边距16px，与其他元素间距 */
+}
+
+/* 使用说明样式 */
+.usage-note {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 60px 0 40px;
+    border-left: 4px solid #4299e1;
+    width:66%;
+    margin: 0 auto;
+}
+
+.usage-note h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.usage-note ol {
+    list-style-position: inside;
+    color: #4a5568;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========== 新增照片墙样式 ========== */
+/* 照片分类标签样式 */
+.tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #f1f5f9;
+    color: #3498db;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* 照片展示容器 */
+.photos-gallery {
+    width:70%; 
+    margin:0 auto; 
+    background:rgba(255,255,255,0.7); 
+    padding:20px; 
+    border-radius:10px; 
+    margin-bottom:20px;
+}
+
+/* 照片分类标题 */
+.photo-category h4 {
+    text-align:center; 
+    color:#3498db; 
+    margin:10px 0;
+}
+
+/* 个人照片区额外间距 */
+.shoot-photos h4 {
+    margin-top: 20px;
+}
+
+/* 照片网格布局 */
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* 单个照片项 */
+.photo-item {
+    width: calc(33.33% - 20px);
+    min-width: 200px;
+    text-align: center;
+}
+
+/* 照片描述文本 */
+.photo-item p {
+    text-align:center; 
+    font-size:14px; 
+    margin:5px 0;
+}
+
+/* 照片hover效果 */
+.photo-item img {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-item img:hover {
+    transform: scale(1.02);
+}
+
+/* 照片分类按钮容器 - 居中+间距 */
+.photo-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 按钮之间的间距 */
+    padding: 20px 0; /* 上下内边距 */
+    flex-wrap: wrap; /* 小屏幕自动换行 */
+}
+
+/* 照片分类按钮核心样式 - 放大尺寸 */
+.photo-btn {
+    /* 基础尺寸（关键：加大padding和字体） */
+    padding: 15px 30px; /* 内边距：上下20px 左右40px（控制按钮大小） */
+    font-size: 18px; /* 字体大小（比默认大） */
+    font-weight: bold; /* 字体加粗 */
+    
+    /* 视觉样式（可选，提升美观） */
+    background-color: #5dbbf1; /* 与导航栏同色系 */
+    color: #ffffff; /* 白色文字 */
+    border: none; /* 去掉默认边框 */
+    border-radius: 8px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬浮手型 */
+    transition: all 0.3s ease; /*  hover过渡动画 */
+    
+    /* 按钮最小宽度（防止文字折行） */
+    min-width: 180px; 
+    height: auto; /* 高度自适应内边距 */
+}
+
+/* 按钮悬浮效果（可选，提升交互） */
+.photo-btn:hover {
+    background-color: #3498db; /* 深色Hover */
+    transform: scale(1.05); /* 轻微放大 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影增强 */
+}
+
+/* 响应式适配（小屏幕按钮自适应） */
+@media (max-width: 768px) {
+    .photo-btn {
+        padding: 16px 30px; /* 小屏幕略微缩小内边距 */
+        font-size: 16px;
+        min-width: 150px;
+    }
+}
+
+/* ========== 新增：全局渐入动画关键帧 ========== */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* 初始位置向下偏移20px */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* 最终回到原位置 */
+  }
+}
+
+/* ========== 为所有容器/文字元素添加渐入动画 ========== */
+/* 导航栏 */
+header {
+  opacity: 0; /* 初始透明 */
+  animation: fadeIn 0.8s ease-out 0.2s forwards; /* 动画时长0.8s，延迟0.2s执行，结束后保持最终状态 */
+}
+
+/* 顶部容器（欢迎语） */
+.container1 {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.4s forwards; /* 延迟0.4s，依次渐入 */
+}
+
+/* 可折叠容器（照片分类） */
+.collapsible-container {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.6s forwards;
+}
+
+/* 照片展示容器 */
+.photos-gallery {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.8s forwards;
+}
+
+/* 使用说明容器 */
+.usage-note {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.0s forwards;
+}
+
+/* 文字元素（标题/按钮/描述等）- 细化动画 */
+h3, h4, .photo-btn, .photo-item p, .highlight-text, .usage-note ol, .loader-text {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 1.2s forwards; /* 文字动画更短，延迟稍晚 */
+}
+
+/* 照片项单独动画（逐个渐入） */
+.photo-item {
+  opacity: 0;
+  /* 每个照片项延迟不同，实现逐个出现 */
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: forwards;
+}
+/* 为第一个照片项设置延迟 */
+.photo-item:nth-child(1) {
+  animation-delay: 1.2s;
+}
+/* 第二个 */
+.photo-item:nth-child(2) {
+  animation-delay: 1.4s;
+}
+/* 第三个 */
+.photo-item:nth-child(3) {
+  animation-delay: 1.6s;
+}
