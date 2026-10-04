@@ -24,6 +24,9 @@
 
     <!-- 外部资源引入（保留所有 script src） -->
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script>
+        window.__indexLoaderMode = true;
+    </script>
     <script src="js/loader-container.js"></script>
     <script src="js/const-text.js"></script>
     <script src="js/Rolling interaction.js"></script>
@@ -45,9 +48,118 @@
 <body>
     <!-- 加载动画界面 -->
     <div class="loader-container">
-        <div class="loader"></div>
-        <div class="loader-text">加载中...</div>
+        <div class="loader-panel" aria-label="加载页">
+            <p class="loader-eyebrow">LOADING</p>
+            <h1 class="loader-title">加载中</h1>
+            <p class="loader-subtext">正在准备首页内容与资源，请稍候。</p>
+
+            <div class="loader-progress-wrap" aria-label="加载进度">
+                <div class="loader-progress-track">
+                    <div class="loader-progress-fill"></div>
+                </div>
+                <div class="loader-progress-meta">
+                    <span>正在加载</span>
+                    <span>62%</span>
+                </div>
+            </div>
+
+            <div class="loader-footer-note">正在进入首页</div>
+        </div>
     </div>
+
+    <script>
+        (function() {
+            const loader = document.querySelector('.loader-container');
+            const progressFill = document.querySelector('.loader-progress-fill');
+            const progressLabel = document.querySelector('.loader-progress-meta span:last-child');
+
+            if (!loader || !progressFill || !progressLabel) {
+                return;
+            }
+
+            let currentProgress = 0;
+            let progressTimer = null;
+            let loaded = false;
+            let finishScheduled = false;
+
+            const renderProgress = (value) => {
+                const clampedValue = Math.max(0, Math.min(100, value));
+                currentProgress = clampedValue;
+                progressFill.style.width = `${clampedValue}%`;
+                progressLabel.textContent = `${Math.round(clampedValue)}%`;
+            };
+
+            const fadeOutLoader = () => {
+                loader.style.opacity = '0';
+
+                setTimeout(() => {
+                    document.body.classList.add('home-entered');
+                    loader.style.display = 'none';
+                }, 500);
+            };
+
+            const finishLoading = () => {
+                if (finishScheduled) {
+                    return;
+                }
+
+                finishScheduled = true;
+
+                if (progressTimer) {
+                    window.clearInterval(progressTimer);
+                    progressTimer = null;
+                }
+
+                const startValue = currentProgress;
+                const startTime = performance.now();
+                const duration = 280;
+
+                const completeStep = (now) => {
+                    const elapsed = now - startTime;
+                    const ratio = Math.min(1, elapsed / duration);
+                    const nextValue = startValue + (100 - startValue) * ratio;
+                    renderProgress(nextValue);
+
+                    if (ratio < 1) {
+                        requestAnimationFrame(completeStep);
+                        return;
+                    }
+
+                    setTimeout(fadeOutLoader, 180);
+                };
+
+                requestAnimationFrame(completeStep);
+            };
+
+            progressFill.style.width = '0%';
+            progressFill.style.transition = 'width 0.08s linear';
+            progressLabel.textContent = '0%';
+
+            progressTimer = window.setInterval(() => {
+                if (loaded) {
+                    return;
+                }
+
+                if (currentProgress >= 92) {
+                    return;
+                }
+
+                renderProgress(currentProgress + 2 + Math.random() * 3);
+            }, 80);
+
+            window.addEventListener('load', function() {
+                loaded = true;
+                finishLoading();
+            }, { once: true });
+
+            window.setTimeout(() => {
+                if (!finishScheduled) {
+                    loaded = true;
+                    finishLoading();
+                }
+            }, 2400);
+        })();
+    </script>
 
     <!-- 导航栏区域 -->
     <div class="header" id="header"> 
@@ -97,7 +209,7 @@
             <div class="target-section" id="targetSection"></div>
             
             <p>世界很大，只是我的知识有限，我要学的东西还有很多，我会继续学习的</p>
-            <p>本网站服务由  DELL Optiplex 5050 sff 提供</p><br>
+            <p>本网站服务由 Github pages 提供</p><br>
             
             <!-- 向下滚动按钮 -->
             <button class="round-btn" id="downBtn">
@@ -185,7 +297,7 @@
                     <div class="tags-container">
                         <div class="tag-item" id="jingtong">疯狂星期四</div>
                     </div>
-                    
+
                     <div class="content-highlight">
                         <p class="highlight-text">实际上这个人写的都是使山代码!</p>
                         <p class="highlight-text">后端苦手/前端享受者</p>

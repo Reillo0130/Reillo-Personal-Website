@@ -16,7 +16,7 @@ img{
 /* ---Body样式设置--- */
 body {
     font-family: source-sans-pro; /* 指定页面文本使用source-sans-pro字体显示 */
-    background-color: #ffffff; /* 页面背景色设置为白色 */
+        background-color: #e7edf7; /* 页面背景色与主背景一致，避免闪白 */
     overflow: auto; /* 当内容超出视口时，自动显示滚动条 */
     min-height: auto; /*  body元素的最小高度自动适应，由内容撑开 */
     margin: 0 auto; /* 水平方向居中对齐，上下外边距为0 */
@@ -49,6 +49,75 @@ body::before {
   /* 3. 渲染范围限制：减少少响布局响主内容 */
   contain: layout paint; /* 告诉浏览器：该元素的布局和绘制制不会影响外部，独立优化渲染，减少重排重绘范围 */
 }
+
+/* 首页入场动画：等待加载层移除后再展开 */
+header.glass-nav,
+.top-section,
+.container1,
+.container2,
+.collapsible-container,
+.container3,
+.course-table-container,
+.Friendship-Links-container,
+.Copyright-container {
+    transform-origin: top center;
+    transition:
+        opacity 0.75s ease,
+        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.75s ease;
+    will-change: opacity, transform, filter;
+}
+
+body:not(.home-entered) header.glass-nav,
+body:not(.home-entered) .top-section,
+body:not(.home-entered) .container1,
+body:not(.home-entered) .container2,
+body:not(.home-entered) .collapsible-container,
+body:not(.home-entered) .container3,
+body:not(.home-entered) .course-table-container,
+body:not(.home-entered) .Friendship-Links-container,
+body:not(.home-entered) .Copyright-container {
+    opacity: 0;
+    transform: translateY(18px) scaleY(0.985);
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+body.home-entered header.glass-nav {
+    transition-delay: 0ms;
+}
+
+body.home-entered .top-section {
+    transition-delay: 90ms;
+}
+
+body.home-entered .container1 {
+    transition-delay: 160ms;
+}
+
+body.home-entered .container2 {
+    transition-delay: 240ms;
+}
+
+body.home-entered .collapsible-container {
+    transition-delay: 320ms;
+}
+
+body.home-entered .container3 {
+    transition-delay: 400ms;
+}
+
+body.home-entered .course-table-container {
+    transition-delay: 480ms;
+}
+
+body.home-entered .Friendship-Links-container {
+    transition-delay: 560ms;
+}
+
+body.home-entered .Copyright-container {
+    transition-delay: 640ms;
+}
 /* ---加载动画样式--- */
 .loader-container {
     position: fixed; /* 固定定位，全屏覆盖 */
@@ -56,49 +125,141 @@ body::before {
     left: 0;
     width: 100%; /* 宽度占满屏幕 */
     height: 100vh; /* 高度占满视口 */
-    background: #fff; /* 白色背景，覆盖页面内容 */
+    background: #e7edf7; /* 先用和主背景一致的底色，避免开头闪白 */
     display: flex; /* 使用flex布局 */
-    flex-direction: column; /* 子元素垂直排列 */
     justify-content: center; /* 垂直居中 */
     align-items: center; /* 水平居中 */
     z-index: 9999; /* 层级最高，确保在最上层显示 */
+    position: fixed;
+    overflow: hidden;
+    opacity: 0;
+    animation: loader-container-fade 0.45s ease forwards;
     transition: opacity 0.5s ease; /* 透明度变化的过渡动画，用于加载完成后隐藏 */
 }
 
-/* 加载动画-圆形旋转动画样式（优化LCP影响） */
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    /* 优化动画性能：使用transform-origin确保旋转中心正确，避免布局偏移 */
+.loader-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    transform: scale(1.05);
     transform-origin: center;
-    animation: spin 1s linear infinite;
-    /* 标记为低优先级动画，不阻塞主线程 */
-    will-change: transform;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, filter;
+    contain: layout paint;
+    opacity: 1;
 }
 
-/* 加载动画文本样式 */
-.loader-text {
-    margin-top: 20px;
-    color: #666;
-    font-size: 16px;
-    /* 文本渲染优化：避免加载时的字体闪烁 */
-    font-display: optional;
+.loader-panel {
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+    width: 70%;
+    min-width: 200px;
+    margin: 0 auto;
+    padding: 26px 0 32px;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    box-shadow: 0 18px 44px rgba(17, 24, 39, 0.12);
+    backdrop-filter: blur(12px) saturate(118%);
+    -webkit-backdrop-filter: blur(12px) saturate(118%);
+    text-align: center;
 }
 
-/* 旋转动画定义（优化性能） */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-    /* 仅使用transform属性，避免触发重排重绘，提升动画性能 */
+.loader-eyebrow {
+    margin: 0 0 10px;
+    color: #667084;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+}
+
+.loader-title {
+    margin: 0;
+    color: #1d2433;
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.loader-subtext {
+    margin: 12px 0 0;
+    color: #667084;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.loader-progress-wrap {
+    margin: 24px auto 0;
+    width: 80%;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: loader-progress-fade 0.45s ease 0.12s forwards;
+}
+
+.loader-progress-track {
+    width: 100%;
+    height: 9px;
+    border-radius: 999px;
+    background: rgba(228, 234, 242, 0.64);
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(31, 41, 55, 0.05);
+}
+
+.loader-progress-fill {
+    width: 62%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, rgba(75, 132, 216, 0.78), rgba(138, 177, 228, 0.72));
+    box-shadow: 0 6px 14px rgba(75, 132, 216, 0.08);
+}
+
+.loader-progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 9px;
+    color: #667084;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+
+.loader-footer-note {
+    margin-top: 16px;
+    color: #7a8494;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+
+@keyframes loader-progress-fade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 加载加载容器额外优化：减少对LCP元素的阻塞 */
 .loader-container {
     /* 确保加载动画在LCP元素绘制前完成或快速隐藏 */
     transition: opacity 0.3s ease-out; /* 缩短过渡时间，加快消失速度 */
+}
+
+@keyframes loader-container-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 /* ===== 仅追加：课表容器样式（保持原有风格） ===== */
 .course-table-container {
@@ -360,7 +521,9 @@ ul li:hover a {
     border-radius: 50%; /* 50%圆角，形成圆形 */
     border: 5px solid #ffffff; /* 5px白色边框 */
     background-color: #f5f5f5; /* 浅灰色背景，图片加载前显示 */
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15); /* 轻微阴影，增强立体感 */
+    box-shadow:
+        0 16px 36px rgba(17, 24, 39, 0.18),
+        0 2px 6px rgba(17, 24, 39, 0.08); /* 更明显的悬浮阴影 */
     display: block; /* 块级元素，可设置margin */
     margin: 0 auto; /* 水平居中 */
     margin-top: -30px; /* 向上偏移30px，突出显示 */
@@ -575,15 +738,20 @@ ul li:hover a {
 
 /* 可折叠容器整体样式 */
 .collapsible-container {
-    background: rgba(255, 255, 255, 0.7); /* 白色背景，70%透明度 */
-    border-radius: 8px; /* 8px圆角边框 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 轻微阴影，增强层次感 */
+    background: rgba(255, 255, 255, 0.46); /* 更像 macOS 的半透明卡片 */
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 42px; /* 更接近苹果的超大圆角 */
+    box-shadow:
+        0 18px 44px rgba(17, 24, 39, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
     overflow: hidden; /* 溢出内容隐藏，确保圆角生效 */
     margin: 0 auto 20px; /* 水平居中，底部外边距20px */
     max-width: 100%; /* 最大宽度不超过父元素 */
     min-width: 200px; /* 最小宽度200px，小屏幕下不致过窄 */
     width: 70%; /* 容器宽度为父元素的70% */
     transition: opacity 0.4s ease; /* 透明度过渡，0.4秒缓动 */
+    backdrop-filter: blur(16px) saturate(128%);
+    -webkit-backdrop-filter: blur(16px) saturate(128%);
 }
 
 /* 可折叠容器标题栏样式 */
@@ -591,14 +759,14 @@ ul li:hover a {
     display: flex; /* 启用flex布局 */
     align-items: center; /* 子元素垂直居中 */
     justify-content: space-between; /* 子元素两端对齐，标题在左，指示器在右 */
-    padding: 16px; /* 内边距16px */
+    padding: 20px 22px; /* 更宽松的苹果风内边距 */
     cursor: pointer; /* 鼠标悬浮时显示指针，提示可点击折叠/展开 */
     transition: background-color 0.2s ease; /* 背景色过渡，0.2秒缓动 */
 }
 
 /* 标题栏悬停效果 */
 .collapsible-header:hover {
-    background-color: #f1f5f9; /* 悬停时背景变为浅灰色 */
+    background-color: rgba(255, 255, 255, 0.32); /* 更柔和的悬停反馈 */
 }
 
 /* 标题栏左侧内容容器 */
@@ -610,9 +778,11 @@ ul li:hover a {
 
 /* 标题栏标题文本样式 */
 .header-title {
-    font-size: 18px; /* 字体大小18px */
-    font-weight: 500; /* 字体粗细为500（中等加粗） */
-    color: #1e293b; /* 文本颜色为深灰色 */
+    font-size: 13px; /* 更接近 macOS 的辅助标题 */
+    font-weight: 600; /* 字体粗细 */
+    color: #667084; /* 柔和的灰色 */
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 /* 三角形展开/折叠指示器样式 */
@@ -669,8 +839,8 @@ ul li:hover a {
 
 /* 内容区域内部容器样式 */
 .content-inner {
-  padding: 16px; /* 内边距16px，保证内容与边框距离 */
-  border-top: 1px solid #ffffff; /* 顶部1px白色边框，分隔标题栏与内容 */
+        padding: 20px 22px 22px; /* 更宽松的苹果风内边距 */
+    border-top: 1px solid rgba(255, 255, 255, 0.56); /* 柔和分隔线 */
   transition: opacity 0.4s ease; /* 透明度过渡，0.4秒缓动 */
 }
 
@@ -681,15 +851,6 @@ ul li:hover a {
   line-height: 1.5; /* 行高1.5，提升文字可读性 */
 }
 
-/* 内容区域高亮块样式 */
-.content-highlight {
-  background: rgba(255, 255, 255, 0.7); /* 白色背景，70%透明度 */
-  padding: 12px; /* 内边距12px */
-  border-radius: 6px; /* 6px圆角边框 */
-  margin-bottom: 16px; /* 底部外边距16px，与下方元素间距 */
-}
-
-/* 高亮块内文本样式 */
 .highlight-text {
   color: #000000; /* 文本颜色为黑色 */
   font-size: 14px; /* 字体大小14px */
@@ -701,51 +862,76 @@ ul li:hover a {
 .content-image {
   width: 100%; /* 图片宽度占满父容器 */
   height: auto; /* 高度自动，保持图片原始比例 */
-  border-radius: 6px; /* 6px圆角，使图片更圆润 */
+        border-radius: 20px; /* 更圆润的圆角 */
   margin-top: 16px; /* 顶部外边距16px，与上方元素间距 */
 }
 
 /* 标签容器样式（横向排列） */
 .tags-container {
-  display: flex; /* 启用Flex布局，实现标签横向排列 */
-  flex-wrap: wrap; /* 标签超出容器宽度时自动换行 */
-  gap: 8px; /* 标签之间的间距8px */
-  margin: 16px 0; /* 上下外边距16px，与其他元素间距 */
+    display: flex; /* 启用Flex布局，实现标签横向排列 */
+    flex-wrap: wrap; /* 标签超出容器宽度时自动换行 */
+    gap: 10px; /* 标签之间的间距 */
+    padding: 0;
+    margin: 12px 0 18px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* 内容区域高亮块样式 */
+.content-highlight {
+    background: rgba(255, 255, 255, 0.66); /* 半透明高亮块 */
+    padding: clamp(16px, 3vw, 20px); /* 随容器缩放的内边距 */
+    border-radius: 32px; /* 苹果风大圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 16px;
 }
 
 /* 单个标签样式 */
 .tag-item {
-  background-color: #e0f2fe; /* 标签背景色为浅蓝色 */
-  color: #0284c7; /* 标签文本颜色为深蓝色 */
-  padding: 6px 12px; /* 内边距：上下6px，左右12px */
-  border-radius: 4px; /* 4px圆角 */
-  font-size: 14px; /* 字体大小14px */
+    background: rgba(255, 255, 255, 0.72); /* 更像 macOS 的胶囊标签 */
+    color: #334155; /* 文本颜色 */
+    padding: 7px 14px; /* 内边距 */
+    border-radius: 999px; /* 胶囊圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 6px 14px rgba(17, 24, 39, 0.08);
+    font-size: 13px; /* 字体大小 */
   white-space: nowrap; /* 标签文本不换行，保持完整性 */
   height: auto; /* 高度自动适应内容 */
 }
 
 /* 特殊标签样式：#buhui（不会） */
 #buhui {
-  background: #e20101; /* 背景色为红色 */
-  color: white; /* 文本颜色为白色 */
+    background: rgba(255, 99, 99, 0.16); /* 更柔和的红色 */
+    color: #b42318; /* 文本颜色 */
 }
 
 /* 特殊标签样式：#liaojie（了解） */
 #liaojie {
-  background: #f3d31b; /* 背景色为黄色 */
-  color: white; /* 文本颜色为白色 */
+    background: rgba(255, 214, 102, 0.22); /* 更柔和的黄色 */
+    color: #9a6700; /* 文本颜色 */
 }
 
 /* 特殊标签样式：#yingyong（应用） */
 #yingyong {
-  background: #019709; /* 背景色为绿色 */
-  color: white; /* 文本颜色为白色 */
+    background: rgba(54, 197, 98, 0.18); /* 更柔和的绿色 */
+    color: #166534; /* 文本颜色 */
 }
 
 /* 特殊标签样式：#jingtong（精通） */
 #jingtong {
-  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); /* 横向渐变色背景 */
-  color: white; /* 文本颜色为白色 */
+    background: linear-gradient(90deg, rgba(79, 172, 254, 0.22) 0%, rgba(0, 242, 254, 0.18) 100%); /* 更轻的渐变 */
+    color: #1d4ed8;
 }
 
 /* 垂直线条样式 */
@@ -878,6 +1064,10 @@ ul li:hover a {
     height: 16px;
     margin-right: 8px;
     vertical-align: middle;
+    border-radius: 4px;
+    box-shadow:
+        0 4px 10px rgba(17, 24, 39, 0.18),
+        0 1px 2px rgba(17, 24, 39, 0.08);
 }
 
 /* 版权文本样式（渐变色文字） */
@@ -939,7 +1129,7 @@ ul li:hover a {
     left: 0;
     width: 100%; /* 宽度占满屏幕 */
     height: 100vh; /* 高度占满视口 */
-    background: #fff; /* 白色背景，覆盖页面内容 */
+    background: rgba(255, 255, 255, 0.18); /* 更接近首页内容卡片的浅底色 */
     display: flex; /* 使用flex布局 */
     flex-direction: column; /* 子元素垂直排列 */
     justify-content: center; /* 垂直居中 */
@@ -1078,7 +1268,7 @@ header.glass-nav {
         0 12px 28px rgba(15, 23, 42, 0.06) !important;
     overflow: hidden !important;
     isolation: isolate !important;
-    z-index: 9999 !important;
+    z-index: 9998 !important;
 }
 
 /* 顶部折射高光 */
