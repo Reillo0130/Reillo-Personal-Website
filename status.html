@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="雷洛Reillo网站状态面板">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/status.css">
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <script src="js/loader-container.js"></script>
+    <title>状态面板 - 雷洛Reillo</title>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader-panel" aria-label="加载页">
+            <p class="loader-eyebrow">LOADING</p>
+            <h1 class="loader-title">加载中</h1>
+            <p class="loader-subtext">正在准备状态面板内容与资源，请稍候。</p>
+
+            <div class="loader-progress-wrap" aria-label="加载进度">
+                <div class="loader-progress-track">
+                    <div class="loader-progress-fill"></div>
+                </div>
+                <div class="loader-progress-meta">
+                    <span>正在加载</span>
+                    <span>62%</span>
+                </div>
+            </div>
+
+            <div class="loader-footer-note">正在进入状态面板</div>
+        </div>
+    </div>
+
+    <main class="status-shell">
+        <nav class="glass-nav" aria-label="状态面板导航">
+            <a class="brand" href="index.html">雷洛Reillo</a>
+            <a class="nav-link" href="index.html">返回首页</a>
+        </nav>
+
+        <section class="status-card" aria-labelledby="status-title">
+            <p class="eyebrow">SYSTEM STATUS</p>
+            <h1 id="status-title">状态面板</h1>
+            <p class="status-description">网站目前运行正常，以下数据会自动刷新。</p>
+
+            <div class="status-indicator">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>系统运行中</span>
+            </div>
+
+            <div class="uptime-grid" data-uptime>
+                <div class="uptime-unit">
+                    <strong data-days>0</strong>
+                    <span>天</span>
+                </div>
+                <div class="uptime-unit">
+                    <strong data-hours>0</strong>
+                    <span>小时</span>
+                </div>
+                <div class="uptime-unit">
+                    <strong data-minutes>0</strong>
+                    <span>分</span>
+                </div>
+                <div class="uptime-unit">
+                    <strong data-seconds>0</strong>
+                    <span>秒</span>
+                </div>
+            </div>
+
+            <p class="updated-time">最后刷新：<time data-updated>--</time></p>
+
+            <div class="service-list" aria-label="网站服务状态">
+                <article class="service-item">
+                    <div class="service-heading">
+                        <h2>个人主页</h2>
+                        <span class="service-state"><span class="status-dot" aria-hidden="true"></span>正常</span>
+                    </div>
+                    <div class="availability-bar" data-availability="100" aria-label="个人主页最近 90 天可用率 100%"></div>
+                    <div class="service-meta"><span>今天</span><span>最近 90 天可用率 100%</span><span>实时</span></div>
+                </article>
+
+                <article class="service-item">
+                    <div class="service-heading">
+                        <h2>照片墙</h2>
+                        <span class="service-state"><span class="status-dot" aria-hidden="true"></span>正常</span>
+                    </div>
+                    <div class="availability-bar" data-availability="100" aria-label="照片墙最近 90 天可用率 100%"></div>
+                    <div class="service-meta"><span>今天</span><span>最近 90 天可用率 100%</span><span>实时</span></div>
+                </article>
+
+                <article class="service-item">
+                    <div class="service-heading">
+                        <h2>更新日志</h2>
+                        <span class="service-state"><span class="status-dot" aria-hidden="true"></span>正常</span>
+                    </div>
+                    <div class="availability-bar" data-availability="100" aria-label="更新日志最近 90 天可用率 100%"></div>
+                    <div class="service-meta"><span>今天</span><span>最近 90 天可用率 100%</span><span>实时</span></div>
+                </article>
+
+                <article class="service-item">
+                    <div class="service-heading">
+                        <h2>状态面板</h2>
+                        <span class="service-state"><span class="status-dot" aria-hidden="true"></span>正常</span>
+                    </div>
+                    <div class="availability-bar" data-availability="100" aria-label="状态面板最近 90 天可用率 100%"></div>
+                    <div class="service-meta"><span>今天</span><span>最近 90 天可用率 100%</span><span>实时</span></div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <script src="js/site-uptime.js"></script>
+</body>
+</html>

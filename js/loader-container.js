@@ -29,6 +29,7 @@ function initLoaderAnimation() {
         setTimeout(() => {
             document.body.classList.add('home-entered');
             loader.style.display = 'none';
+            window.dispatchEvent(new CustomEvent('site-loader-finished'));
         }, 500);
     };
 

@@ -34,6 +34,8 @@ A personal website for Reillo, built with plain HTML, CSS, and JavaScript.
 
 - `index.html` - 首页
 - `css/index.css` - 首页样式
+- `404.html` - 404 错误页面
+- `css/404.css` - 404 页面样式
 - `photos.html` - 照片页面
 - `css/photos.css` - 照片页面样式
 - `changelog.html` - 更新日志
@@ -48,6 +50,8 @@ A personal website for Reillo, built with plain HTML, CSS, and JavaScript.
 
 - `index.html` - Main homepage
 - `css/index.css` - Homepage styles
+- `404.html` - 404 error page
+- `css/404.css` - 404 page styles
 - `photos.html` - Photos page
 - `css/photos.css` - Photos page styles
 - `changelog.html` - Website changelog

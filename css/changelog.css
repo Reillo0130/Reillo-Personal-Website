@@ -110,7 +110,7 @@ body {
 /* 更新条目样式 */
 .update-item {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 24px;
     padding: 20px;
     margin-bottom: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -202,25 +202,32 @@ body {
 
 /* 使用说明样式 */
 .usage-note {
-    background-color: #f0f8fb;
-    border-radius: 8px;
+    background: linear-gradient(180deg, #e9f4ff 0%, #d9ecff 100%);
+    border-radius: 24px;
     padding: 20px;
     margin: 60px 0 40px;
-    border-left: 4px solid #4299e1;
+    border: 1px solid rgba(66, 153, 225, 0.22);
+    box-shadow: 0 8px 20px rgba(66, 153, 225, 0.12);
 }
 
 .usage-note h3 {
-    color: #2d3748;
+    color: #1769aa;
     margin-bottom: 15px;
     font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .usage-note ol {
     list-style-position: inside;
-    color: #4a5568;
+    color: #1769aa;
     gap: 8px;
     display: flex;
     flex-direction: column;
+}
+
+.usage-note li {
+    color: #1769aa;
+    font-weight: 500;
 }
 
 /* 响应式适配（移动端） */
@@ -250,7 +257,7 @@ body {
 /* 规划区域样式（与更新日志区分） */
 .plan-section {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 24px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     margin: 20px 0;
@@ -260,7 +267,7 @@ body {
 /* 历史更新整体容器（用于隔离定位） */
 .history-updates {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 24px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     margin: 20px 0;
     overflow: hidden; /* 确保内容折叠时不溢出容器 */
@@ -277,6 +284,8 @@ body {
     transition: background-color 0.3s ease-in-out; /* 优化过渡曲线 */
     background-color: #ffffff;
     border-bottom: 1px solid #f0f0f0;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
 }
 
 .history-toggle-container:hover {
@@ -297,11 +306,13 @@ body {
     margin: 0;
     background-color: #f9fafb;
     opacity: 0; /* 折叠时透明 */
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
 /* 展开时样式（动画同步） */
 .history-content.expanded {
-    max-height: 2000px; /* 足够容纳内容，避免动画中断 */
+    max-height: var(--expanded-max-height, 2000px); /* 按实际内容高度展开，避免长文本被截断 */
     padding: 20px; /* 展开时完整内边距 */
     opacity: 1; /* 展开时完全显示 */
 }
@@ -314,7 +325,7 @@ body {
 /* 重大事件容器样式 */
 .major-events {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 24px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     margin: 20px 0;
     overflow: hidden;
@@ -329,8 +340,10 @@ body {
     padding: 15px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out; /* 统一过渡曲线 */
-    background-color: #f9fafb;
+    background-color: #ffffff;
     border-bottom: 1px solid #f0f0f0;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
 }
 
 .major-toggle-container:hover {
@@ -347,11 +360,14 @@ body {
         opacity 0.4s ease-in-out;
     padding: 0 20px;
     margin: 0;
+    background-color: #f9fafb;
     opacity: 0;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
 .major-content.expanded {
-    max-height: 1000px;
+    max-height: var(--expanded-max-height, 1000px);
     padding: 20px;
     opacity: 1;
 }
@@ -359,7 +375,7 @@ body {
 /* 重大事件条目样式 */
 .event-item {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 24px;
     padding: 20px;
     margin-bottom: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -380,24 +396,27 @@ body {
 
 /* 返回按钮样式 */
 .back-to-home {
-    display: inline-block;
-    margin: 0 0 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 20px 0;
     padding: 8px 16px;
-    background-color: #4299e1;
-    color: white;
+    background: linear-gradient(180deg, #e9f4ff 0%, #d9ecff 100%);
+    color: #1769aa;
     text-decoration: none;
     border-radius: 4px;
     font-weight: 500;
+    border: 1px solid rgba(66, 153, 225, 0.22);
+    box-shadow: 0 8px 20px rgba(66, 153, 225, 0.12);
     transition: background-color 0.3s ease-in-out; /* 统一过渡曲线 */
 }
 
 .back-to-home:hover {
-    background-color: #3182ce;
+    background: linear-gradient(180deg, #d9ecff 0%, #c9e2ff 100%);
 }
 
 .back-to-home svg {
-    margin-right: 6px;
-    vertical-align: middle;
+    display: block;
 }
 
 /* 加载动画样式 */

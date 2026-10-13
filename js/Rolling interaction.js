@@ -8,6 +8,10 @@ let timeout;
 function checkCollision() {
     // 获取头部导航栏元素及其位置信息（相对于视口的坐标）
     const header = document.querySelector('header');
+    if (!header) {
+        return;
+    }
+
     const headerRect = header.getBoundingClientRect();
     
     // 获取所有需要检测的容器元素（.container, .container1, .container2）

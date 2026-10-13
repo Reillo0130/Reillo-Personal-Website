@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 获取id为targetSection的目标区域元素（要滚动到的位置）
     const targetSection = document.getElementById('targetSection');
 
+    if (!downBtn || !targetSection) {
+        return;
+    }
+
     // 给按钮添加点击事件监听
     downBtn.addEventListener('click', function() {
         // 调用scrollIntoView方法平滑滚动到目标区域

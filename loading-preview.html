@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>加载页展示版</title>
+    <link rel="stylesheet" href="css/loader.css">
     <style>
         :root {
             color-scheme: light;
@@ -74,13 +75,6 @@
             width: 70%;
             min-width: 200px;
             margin: 0 auto;
-            padding: 26px 0 32px;
-            border-radius: 26px;
-            background: rgba(255, 255, 255, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.62);
-            box-shadow: 0 18px 44px rgba(17, 24, 39, 0.12);
-            backdrop-filter: blur(12px) saturate(118%);
-            -webkit-backdrop-filter: blur(12px) saturate(118%);
             opacity: 0;
             animation: preview-card-fade 0.45s ease forwards;
         }
@@ -95,25 +89,28 @@
         }
 
         .title {
+    <script src="js/loader-container.js"></script>
             margin: 0;
             color: var(--text);
-            font-size: 27px;
-            font-weight: 600;
-            text-align: center;
-            letter-spacing: 0.01em;
-        }
+    <div class="loader-container">
+        <div class="loader-panel" aria-label="加载页">
+            <p class="loader-eyebrow">LOADING</p>
+            <h1 class="loader-title">加载中</h1>
+            <p class="loader-subtext">这里展示和首页相同的加载动画样式。</p>
 
-        .subtext {
-            margin: 12px 0 0;
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.75;
-            text-align: center;
-        }
+            <div class="loader-progress-wrap" aria-label="加载进度">
+                <div class="loader-progress-track">
+                    <div class="loader-progress-fill"></div>
+                </div>
+                <div class="loader-progress-meta">
+                    <span>正在加载</span>
+                    <span>62%</span>
+                </div>
+            </div>
 
-        .progress-wrap {
-            margin: 24px auto 0;
-            width: 80%;
+            <div class="loader-footer-note">加载页展示版</div>
+        </div>
+    </div>
             opacity: 0;
             transform: translateY(6px);
             animation: loader-progress-fade 0.45s ease 0.12s forwards;

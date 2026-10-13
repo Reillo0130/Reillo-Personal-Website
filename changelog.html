@@ -4,26 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>雷洛Reillo的网站更新日志</title>
+    <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/changelog.css">
-    <script src="js/changelog-fadeUp.js"></script>
     <script src="js/loader-container.js"></script> <!-- 加载动画脚本 -->
+    <script src="js/changelog-fadeUp.js"></script>
 </head>
 <body>
-    <!-- 加载动画界面：页面加载完成前显示 -->
+    <!-- 加载动画界面 -->
     <div class="loader-container">
-        <div class="loader"></div> <!-- 旋转加载动画 -->
-        <div class="loader-text">加载中...</div> <!-- 加载提示文本 -->
+        <div class="loader-panel" aria-label="加载页">
+            <p class="loader-eyebrow">LOADING</p>
+            <h1 class="loader-title">加载中</h1>
+            <p class="loader-subtext">正在准备更新日志内容与资源，请稍候。</p>
+
+            <div class="loader-progress-wrap" aria-label="加载进度">
+                <div class="loader-progress-track">
+                    <div class="loader-progress-fill"></div>
+                </div>
+                <div class="loader-progress-meta">
+                    <span>正在加载</span>
+                    <span>62%</span>
+                </div>
+            </div>
+
+            <div class="loader-footer-note">正在进入更新日志</div>
+        </div>
     </div>
 
-    <!-- 返回首页按钮（添加在最新更新上方） -->
     <a href="index.html" class="back-to-home">
-        <!-- 箭头图标 -->
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
         </svg>
         返回首页
     </a>
-    
+
     <h1 class="page-title">网站更新日志</h1>
     
     <p class="intro">本页面记录网站全量迭代更新内容，涵盖功能新增、体验优化、问题修复、重大事件等维度，便于追踪网站版本迭代轨迹。</p>
@@ -42,39 +56,58 @@
         </div>
         <div class="major-content" id="majorContent">
             <div class="changelog-container major-container">
-                <div class="event-item">
-                    <div class="update-header">
-                        <span class="update-date" style="color: red;">2026年9月25日</span>
-                        <div class="update-tags">
-                            <span class="tag major">重要</span>
+                <div class="year-section">
+                    <h2 class="year-title">2026年</h2>
+
+                    <div class="month-section">
+                        <h3 class="month-title">9月</h3>
+                        <div class="event-item">
+                            <div class="update-header">
+                                <span class="update-date" style="color: red;">9月25日</span>
+                                <div class="update-tags">
+                                    <span class="tag major">重要</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li style="color: red;">网站项目正式上线 GitHub 仓库，支持版本管理与持续更新</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul class="update-content">
-                        <li style="color: red;">网站项目正式上线 GitHub 仓库，支持版本管理与持续更新</li>
-                    </ul>
                 </div>
-                <div class="event-item">
-                    <div class="update-header">
-                        <span class="update-date" style="color: red;">2025年11月18日</span>
-                        <div class="update-tags">
-                            <span class="tag major">重要</span>
+
+                <div class="year-section">
+                    <h2 class="year-title">2025年</h2>
+
+                    <div class="month-section">
+                        <h3 class="month-title">11月</h3>
+                        <div class="event-item">
+                            <div class="update-header">
+                                <span class="update-date" style="color: red;">11月18日</span>
+                                <div class="update-tags">
+                                    <span class="tag major">重要</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li style="color: red;">因Cloudflare全球网络服务异常，导致网站短时无法访问</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul class="update-content">
-                        <li style="color: red;">因Cloudflare全球网络服务异常，导致网站短时无法访问</li>
-                    </ul>
-                </div>
-                <div class="event-item">
-                    <div class="update-header">
-                        <span class="update-date">2025年10月25日</span>
-                        <div class="update-tags">
-                            <span class="tag major">重要</span>
+
+                    <div class="month-section">
+                        <h3 class="month-title">10月</h3>
+                        <div class="event-item">
+                            <div class="update-header">
+                                <span class="update-date">10月25日</span>
+                                <div class="update-tags">
+                                    <span class="tag major">重要</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>网站正式上线，发布V1.0初始版本</li>
+                                <li>完成核心功能模块开发、测试及上线验收</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul class="update-content">
-                        <li>网站正式上线，发布V1.0初始版本</li>
-                        <li>完成核心功能模块开发、测试及上线验收</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -95,6 +128,28 @@
                     <!-- 10月 -->
                     <div class="month-section">
                         <h3 class="month-title">10月</h3>
+                        <div class="update-item" data-update-date="2026-10-13" data-type="actual">
+                            <div class="update-header">
+                                <span class="update-date">10月13日</span>
+                                <div class="update-tags">
+                                    <span class="tag new">功能新增</span>
+                                    <span class="tag optimize">体验优化</span>
+                                    <span class="tag fix">问题修复</span>
+                                </div>
+                            </div>
+                            <ul class="update-content">
+                                <li>统一各页面加载动画为与首页一致的进度条式加载页</li>
+                                <li>修复更新日志页面加载卡住的问题，避免旧版加载结构与脚本不兼容</li>
+                                <li>抽出共享加载页样式，减少各页面之间的加载动画差异</li>
+                                <li>同步更新 404、照片墙、状态面板和加载预览页的加载展示</li>
+                                <li>统一更新日志各主要容器圆角样式，优化折叠区与条目收口效果</li>
+                                <li>调整「返回首页」按钮与使用说明的配色和字体，使视觉风格保持一致</li>
+                                <li>统一返回首页与历史更新的左侧对齐间距，修正按钮与标题的横向对齐</li>
+                                <li>修复重大事件与历史更新展开内容被固定高度截断的问题，改为按实际内容高度展开</li>
+                                <li>将重大事件板块改为与历史更新一致的年/月分组结构，统一信息层级</li>
+                                <li>修正重大事件标题栏与内容区底色层级，避免白底与灰底显示反转</li>
+                            </ul>
+                        </div>
                         <div class="update-item" data-update-date="2026-10-04" data-type="actual">
                             <div class="update-header">
                                 <span class="update-date">10月04日</span>

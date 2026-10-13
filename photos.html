@@ -13,6 +13,7 @@
     <meta name="robots" content="index,follow"> <!-- 允许搜索引擎抓取和跟踪链接 -->
 
     <!-- 样式与脚本引入 -->
+    <link rel="stylesheet" href="css/loader.css" type="text/css">
     <link rel="stylesheet" href="css/photos.css" type="text/css"> <!-- 引入外部CSS样式表 -->
     <link rel="shortcut icon" type="image/ico" href="assets/favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -25,22 +26,37 @@
     <title>雷洛的照片墙</title> <!-- 浏览器标签页标题 -->
 </head>
 <body>
-    <!-- 加载动画界面：页面加载完成前显示 -->
+    <!-- 加载动画界面 -->
     <div class="loader-container">
-        <div class="loader"></div>
-        <div class="loader-text">加载中...</div>
+        <div class="loader-panel" aria-label="加载页">
+            <p class="loader-eyebrow">LOADING</p>
+            <h1 class="loader-title">加载中</h1>
+            <p class="loader-subtext">正在准备照片墙内容与资源，请稍候。</p>
+
+            <div class="loader-progress-wrap" aria-label="加载进度">
+                <div class="loader-progress-track">
+                    <div class="loader-progress-fill"></div>
+                </div>
+                <div class="loader-progress-meta">
+                    <span>正在加载</span>
+                    <span>62%</span>
+                </div>
+            </div>
+
+            <div class="loader-footer-note">正在进入照片墙</div>
+        </div>
     </div>
     
     <!-- 导航栏区域 -->
     <div class="header" id="header"> 
-        <header>
+        <header class="glass-nav">
             <!-- 网站Logo与链接 -->
             <h4 class="logo">
                 <a href="https://space.bilibili.com/391463531">雷洛Reillo</a> <!-- 点击跳转到B站空间 -->
             </h4>
             
             <!-- 导航菜单 -->
-            <nav>
+            <nav class="glass-nav-menu">
                 <ul>
                     <li><a href="index.html">主页</a></li> <!-- 主页导航链接 -->
                     <li><a href="#about">关于</a></li> <!-- 关于页面链接 -->

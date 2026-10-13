@@ -2,10 +2,19 @@
 document.addEventListener('DOMContentLoaded', function() {
   // 获取可折叠容器的各个关键元素
   const container = document.querySelector('.collapsible-container'); // 整个可折叠容器
+
+  if (!container) {
+    return;
+  }
+
   const header = container.querySelector('.collapsible-header'); // 标题栏（点击触发折叠/展开）
   const content = container.querySelector('.collapsible-content'); // 内容区域（需要折叠/展开的部分）
   const triangle = container.querySelector('.triangle'); // 三角形指示器（用于显示展开/折叠状态）
   const chevron = container.querySelector('.chevron'); // 箭头图标（用于显示展开/折叠状态）
+
+  if (!header || !content || !triangle || !chevron) {
+    return;
+  }
   
   // 给标题栏添加点击事件监听，触发折叠/展开逻辑
   header.addEventListener('click', () => {
