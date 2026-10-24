@@ -367,12 +367,6 @@ body.home-entered .Copyright-container {
     white-space: nowrap;
 }
 
-/* 课表按周几增加与横线一致的竖向分隔线 */
-.timetable-table thead th:not(:last-child),
-.timetable-table tbody td:not(:last-child) {
-    border-right: 2px solid #ffffff;
-}
-
 /* 让课表更统一，不影响其他部位 */
 .table-wrap {
     overflow-x: auto;
@@ -970,28 +964,53 @@ ul li:hover a {
 /* 表格核心样式（适配原有视觉风格） */
 .itinerary-table {
     width: 100%;
-    border-collapse: collapse; /* 合并边框，避免双重线条 */
-    margin-top: 10px;
+    min-width: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #26364a;
+    font-size: 13px;
 }
 
-/* 表头样式 */
 .itinerary-table thead th {
-    padding: 12px 8px;
-    text-align: left;
-    background-color: #f5f5f5; /* 浅灰色背景区分表头 */
-    font-weight: 600;
-    border-bottom: 2px solid #eee; /* 底部边框强化分隔 */
+    height: 42px;
+    padding: 8px 6px;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
+    background: #3f70bd;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
 }
 
-/* 表体单元格样式 */
 .itinerary-table tbody td {
-    padding: 12px 8px;
-    border-bottom: 1px solid #f0f0f0; /* 行分隔线 */
+    height: 54px;
+    padding: 7px 8px;
+    border: 0;
+    border-right: 1px solid #e1e7ef;
+    border-bottom: 1px solid #e1e7ef;
+    background: #fff;
+    line-height: 1.4;
+    text-align: center;
+    vertical-align: middle;
 }
 
-/* hover行高亮（可选，提升交互） */
-.itinerary-table tbody tr:hover {
-    background-color: #f9f9f9;
+.itinerary-table thead th:last-child,
+.itinerary-table tbody td:last-child {
+    border-right: 0;
+}
+
+.itinerary-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .itinerary-table thead th,
+    .itinerary-table tbody td {
+        padding-right: 4px;
+        padding-left: 4px;
+        font-size: 12px;
+    }
 }
 /* 新增：状态标签样式（区分不同状态，可选） */
 .status {
@@ -1842,6 +1861,13 @@ header.glass-nav nav.glass-nav-menu ul li a {
     box-sizing: border-box;
 }
 
+.container3 {
+    padding-right: 18px;
+    padding-bottom: 36px;
+    padding-left: 18px;
+    box-sizing: border-box;
+}
+
 .timetable-term {
     display: flex;
     justify-content: center;
@@ -1904,14 +1930,19 @@ header.glass-nav nav.glass-nav-menu ul li a {
     padding: 7px 8px;
     border: 0;
     border-right: 1px solid #e1e7ef;
-    border-bottom: 1px solid #e1e7ef;
+    border-bottom: 0;
     background: #fff;
     line-height: 1.4;
     text-align: center;
     vertical-align: middle;
 }
 
-.timetable-table tbody tr:last-child td {
+.timetable-table tbody tr.period-break td,
+.timetable-table tbody td[rowspan="2"] {
+    border-bottom: 1px solid #d8e0eb;
+}
+
+.timetable-table tbody tr:last-child.period-break td {
     border-bottom: 0;
 }
 
@@ -2152,6 +2183,14 @@ header.glass-nav nav.glass-nav-menu ul li a {
 }
 
 @media (max-width: 768px) {
+    .container3 {
+        width: 96%;
+        min-width: 0;
+        padding-right: 10px;
+        padding-left: 10px;
+        box-sizing: border-box;
+    }
+
     .course-table-container {
         width: 96%;
         padding: 20px 10px 22px;
