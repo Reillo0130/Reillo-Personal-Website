@@ -362,11 +362,18 @@
         <div class="course-table-container">
             <h3>课表</h3>
             <hr class="vertical-line">
+            <div class="timetable-term" aria-live="polite">
+                <span>2026-2027 学年第一学期</span>
+                <span id="timetable-week">正在计算周次</span>
+                <span>共 18 周</span>
+                <span>起始周：2026-09-07</span>
+            </div>
             <div class="table-wrap">
-                <table class="timetable-table">
+                <table class="timetable-table" data-term-start="2026-09-07" data-term-weeks="18">
                     <thead>
                         <tr>
-                            <th>时间</th>
+                            <th class="period-heading">节次</th>
+                            <th class="time-heading">上课时间</th>
                             <th>周一</th>
                             <th>周二</th>
                             <th>周三</th>
@@ -377,73 +384,67 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1-2节</td>
-                            <td>程序设计</td>
-                            <td>高等数学</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
+                        <tr data-period="1">
+                            <td class="period-cell">第 1 节</td><td class="time-cell">08:40–09:20</td>
+                            <td rowspan="2" data-day="1" data-period-start="1" data-period-end="2" class="course-cell course-major"><strong>程序设计基础</strong><span>教 5-412</span></td>
+                            <td rowspan="2" data-day="2" data-period-start="1" data-period-end="2" class="course-cell course-major"><strong>高等数学</strong><span>教 5-506</span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
                         </tr>
-                        <tr>
-                            <td>3-4节</td>
-                            <td>—</td>
-                            <td>军事理论</td>
-                            <td>—</td>
-                            <td>思想道德</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
+                        <tr data-period="2"><td class="period-cell">第 2 节</td><td class="time-cell">09:25–10:05</td></tr>
+                        <tr data-period="3">
+                            <td class="period-cell">第 3 节</td><td class="time-cell">10:30–11:10</td>
+                            <td></td><td rowspan="2" data-day="2" data-period-start="3" data-period-end="4" data-active-weeks="5,7,9,11,13,15,17" data-teacher="唐彤" class="course-cell course-politics"><strong>军事理论</strong><span>教 5-502</span></td>
+                            <td></td><td rowspan="2" data-day="4" data-period-start="3" data-period-end="4" data-active-weeks="1,2,3,4,5,6,8,10,12,14,16,18" class="course-cell course-politics"><strong>思想道德与法治</strong><span>教 6-301</span></td><td></td><td></td><td></td>
                         </tr>
-                        <tr>
-                            <td>5-6节</td>
-                            <td>毛概</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>职业发展</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
+                        <tr data-period="4"><td class="period-cell">第 4 节</td><td class="time-cell">11:15–11:55</td></tr>
+                        <tr data-period="5">
+                            <td class="period-cell">第 5 节</td><td class="time-cell">13:30–14:10</td>
+                            <td rowspan="2" data-day="1" data-period-start="5" data-period-end="6" class="course-cell course-politics"><strong>毛泽东思想与中国特色社会主义理论</strong><span>教 6-416</span></td>
+                            <td></td><td></td>
+                            <td rowspan="2" data-day="4" data-period-start="5" data-period-end="6" data-active-weeks="1,2,3,4,5,6,8,10,12,14,16,18" class="course-cell course-general"><strong>大学生职业发展与就业指导</strong><span>教 5-102</span></td>
+                            <td></td><td></td><td></td>
                         </tr>
-                        <tr>
-                            <td>7-8节</td>
-                            <td>体育健康</td>
-                            <td>—</td>
-                            <td>思想道德</td>
-                            <td>创新创业<br>心理健康</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
+                        <tr data-period="6"><td class="period-cell">第 6 节</td><td class="time-cell">14:15–14:55</td></tr>
+                        <tr data-period="7">
+                            <td class="period-cell">第 7 节</td><td class="time-cell">15:20–16:00</td>
+                            <td rowspan="2" data-day="1" data-period-start="7" data-period-end="8" class="course-cell course-sports"><strong>体育与健康（上）</strong><span>板块课</span></td>
+                            <td></td><td rowspan="2" data-day="3" data-period-start="7" data-period-end="8" class="course-cell course-politics"><strong>思想道德与法治</strong><span>教 7-414</span></td>
+                            <td rowspan="2" data-day="4" data-period-start="7" data-period-end="8" data-innovation-start="5" data-innovation-end="11" data-mental-health-start="12" data-mental-health-end="18" class="course-cell course-general"><span class="course-count-badge" aria-label="共 2 门课程">2</span><strong class="alternate-course-name">大学生创新创业教育</strong><span class="alternate-course-note">第 5–11 周</span><span>教 5-301</span></td>
+                            <td></td><td></td><td></td>
                         </tr>
-                        <tr>
-                            <td>9-10节</td>
-                            <td>形势政策</td>
-                            <td>网页设计</td>
-                            <td>网页设计</td>
-                            <td>程序设计</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
+                        <tr data-period="8"><td class="period-cell">第 8 节</td><td class="time-cell">16:05–16:45</td></tr>
+                        <tr data-period="9">
+                            <td class="period-cell">第 9 节</td><td class="time-cell">18:00–18:40</td>
+                            <td rowspan="2" data-day="1" data-period-start="9" data-period-end="10" data-active-weeks="1,2,3,4,5,6,8,10,12,14,16,18" class="course-cell course-politics"><strong>形势与政策</strong><span>教 6-201</span></td>
+                            <td rowspan="2" data-day="2" data-period-start="9" data-period-end="10" class="course-cell course-major"><strong>网页设计与制作</strong><span>教 8-407</span></td>
+                            <td rowspan="2" data-day="3" data-period-start="9" data-period-end="10" class="course-cell course-major"><strong>网页设计与制作</strong><span>教 8-407</span></td>
+                            <td rowspan="2" data-day="4" data-period-start="9" data-period-end="10" class="course-cell course-major"><strong>程序设计基础</strong><span>教 5-412</span></td>
+                            <td></td><td></td><td></td>
                         </tr>
-                        <tr>
-                            <td>11节</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>计算机网络</td>
-                            <td>—</td>
-                            <td>—</td>
-                            <td>—</td>
+                        <tr data-period="10"><td class="period-cell">第 10 节</td><td class="time-cell">18:45–19:25</td></tr>
+                        <tr data-period="11">
+                            <td class="period-cell">第 11 节</td><td class="time-cell">19:30–20:10</td>
+                            <td></td><td></td><td></td>
+                            <td rowspan="2" data-day="4" data-period-start="11" data-period-end="12" class="course-cell course-major"><strong>计算机网络基础</strong><span>教 5-301</span></td>
+                            <td></td><td></td><td></td>
                         </tr>
+                        <tr data-period="12"><td class="period-cell">第 12 节</td><td class="time-cell">20:15–20:55</td></tr>
                     </tbody>
                 </table>
             </div>
+            <dialog class="course-detail-dialog" aria-labelledby="course-detail-title">
+                <div class="course-detail-panel">
+                    <button class="course-detail-close" type="button" aria-label="关闭课程详情">×</button>
+                    <p class="course-detail-eyebrow">课程详情</p>
+                    <h4 id="course-detail-title"></h4>
+                    <div class="course-detail-content"></div>
+                </div>
+            </dialog>
+            <p class="current-course-status" role="status" aria-live="polite">正在读取课程状态</p>
             <div class="course-status-legend" aria-label="课表状态说明">
-                <span class="status-pill status-pill-course">有课</span>
-                <span class="status-pill status-pill-free">无课</span>
-                <span class="holiday-note">节假日会自动将当日课程替换为无课</span>
+                <span class="status-pill status-pill-course">本周课程</span>
+                <span class="status-pill status-pill-free">非本周课程</span>
+                <span class="holiday-note">课程周次以 2026-09-07 为第 1 周，学期共 18 周</span>
             </div>
         </div>
 

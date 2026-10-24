@@ -1831,3 +1831,373 @@ header.glass-nav nav.glass-nav-menu ul li a {
     }
 }
 
+.course-table-container {
+    width: 70%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 24px 18px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
+}
+
+.timetable-term {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0 auto 14px;
+    color: #526176;
+    font-size: 13px;
+    text-align: center;
+}
+
+.timetable-term span + span::before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    margin-right: 18px;
+    background: #cbd5e1;
+    vertical-align: -1px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid #d8e0eb;
+    border-radius: 8px;
+    background: #fff;
+    scrollbar-color: #a8b7ca #edf2f7;
+}
+
+.timetable-table {
+    width: 100%;
+    min-width: 0;
+    font-size: 13px;
+    color: #26364a;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.timetable-table thead th {
+    height: 42px;
+    padding: 8px 6px;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
+    background: #3f70bd;
+    color: #fff;
+    font-size: 13px;
+}
+
+.timetable-table thead th:first-child {
+    width: 48px;
+}
+
+.timetable-table thead th:nth-child(2) {
+    width: 72px;
+}
+
+.timetable-table tbody td {
+    height: 54px;
+    padding: 7px 8px;
+    border: 0;
+    border-right: 1px solid #e1e7ef;
+    border-bottom: 1px solid #e1e7ef;
+    background: #fff;
+    line-height: 1.4;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.timetable-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.timetable-table tbody td.period-cell,
+.timetable-table tbody td.time-cell {
+    background: #edf2fa;
+    color: #47566b;
+    white-space: nowrap;
+}
+
+.timetable-table tbody td.period-cell {
+    font-weight: 700;
+}
+
+.timetable-table tbody td.time-cell {
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+
+.timetable-table tbody td.course-cell {
+    min-width: 0;
+    padding: 10px 8px;
+    border: 1px solid rgba(63, 83, 109, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.48);
+    overflow-wrap: anywhere;
+}
+
+.course-cell strong,
+.course-cell span {
+    display: block;
+}
+
+.course-cell {
+    position: relative;
+    cursor: pointer;
+}
+
+.course-cell:focus-visible {
+    outline: 3px solid #205f9c;
+    outline-offset: -4px;
+}
+
+.course-cell .course-count-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(38, 54, 74, 0.16);
+    border-radius: 50%;
+    background: #fff;
+    color: #26364a;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 1px 4px rgba(31, 41, 55, 0.22);
+}
+
+.course-cell strong {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.course-cell span {
+    margin-top: 3px;
+    color: #4b5b6d;
+    font-size: 11px;
+}
+
+.course-cell .course-week-note,
+.course-cell .alternate-course-note {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.76);
+    color: #536174;
+    font-size: 10px;
+}
+
+.course-cell .alternate-course-note.is-hidden {
+    display: none;
+}
+
+.course-major { background: #e7f2fb !important; }
+.course-sports { background: #e6f4e8 !important; }
+.course-politics { background: #fbefdd !important; }
+.course-general { background: #e3f3f1 !important; }
+
+.timetable-table td.course-cell.off-week {
+    opacity: 0.5;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.timetable-table td.current-course {
+    position: relative;
+    z-index: 1;
+    outline: 2px solid #2878bd;
+    outline-offset: -3px;
+}
+
+.timetable-table td.current-course::after {
+    content: "进行中";
+    display: block;
+    margin-top: 5px;
+    color: #1769aa;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.current-course-status {
+    min-height: 20px;
+    margin: 12px auto 0;
+    text-align: center;
+}
+
+.current-course-status.no-course {
+    color: #697586;
+}
+
+.course-status-legend {
+    margin-top: 12px;
+}
+
+.course-detail-dialog {
+    width: min(92vw, 420px);
+    max-width: 420px;
+    padding: 0;
+    border: 1px solid #d8e0eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #26364a;
+    box-shadow: 0 18px 54px rgba(24, 39, 58, 0.24);
+}
+
+.course-detail-dialog::backdrop {
+    background: rgba(24, 39, 58, 0.38);
+    backdrop-filter: blur(3px);
+}
+
+.course-detail-panel {
+    position: relative;
+    padding: 24px;
+}
+
+.course-detail-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: #edf2f7;
+    color: #405168;
+    font-size: 23px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.course-detail-eyebrow {
+    margin: 0 0 6px;
+    color: #607086;
+    font-size: 12px;
+}
+
+.course-detail-panel h4 {
+    margin: 0 42px 18px 0;
+    color: #1f2f43;
+    font-size: 20px;
+}
+
+.course-detail-content {
+    display: grid;
+    gap: 10px;
+}
+
+.course-detail-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #e3e8ef;
+}
+
+.course-detail-item:last-child {
+    border-bottom: 0;
+}
+
+.course-detail-item h5 {
+    margin: 0;
+    color: #26364a;
+    font-size: 15px;
+}
+
+.course-detail-item dl {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 0;
+}
+
+.course-detail-item dl > div {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+
+.course-detail-item dt,
+.course-detail-item dd {
+    margin: 0;
+    color: #5a687a;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.course-detail-item dt {
+    color: #718096;
+}
+
+.course-detail-item dd {
+    color: #26364a;
+    overflow-wrap: anywhere;
+}
+
+.status-pill-course {
+    background: #e6f4e8;
+    color: #287143;
+    box-shadow: inset 0 0 0 1px #b9dec3;
+}
+
+.status-pill-free {
+    background: #f1f3f6;
+    color: #536174;
+    box-shadow: inset 0 0 0 1px #d7dde5;
+}
+
+@media (max-width: 768px) {
+    .course-table-container {
+        width: 96%;
+        padding: 20px 10px 22px;
+    }
+
+    .timetable-term {
+        gap: 7px 12px;
+        font-size: 12px;
+    }
+
+    .timetable-term span + span::before {
+        margin-right: 12px;
+    }
+
+    .timetable-table {
+        min-width: 0;
+    }
+
+    .timetable-table thead th:first-child {
+        width: 34px;
+    }
+
+    .timetable-table thead th:nth-child(2) {
+        width: 52px;
+    }
+
+    .timetable-table thead th,
+    .timetable-table tbody td {
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+
+    .timetable-table tbody td.time-cell {
+        font-size: 9px;
+    }
+
+    .timetable-table tbody td.course-cell {
+        padding: 7px 3px;
+    }
+
+    .course-cell strong {
+        font-size: 10px;
+    }
+
+    .course-cell span {
+        font-size: 9px;
+    }
+}
+
