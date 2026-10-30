@@ -23,7 +23,7 @@ body {
     height: auto; /* 高度自动，由内容决定 */
 }
 
-/* 页面背景图优化方案：降低对LCP（最大内容绘制）的影响 */
+/* 页面背景 */
 body::before {
   content: ""; /* 伪元素伪元素必须设置的空内容，使元素元素才能生效 */
   position: fixed; /* 固定定位，使背景图不随页面滚动移动 */
@@ -43,11 +43,7 @@ body::before {
   transform: scale(1.05); /* 图片轻微放大1.05倍，解决模糊化后边缘空白问题 */
   z-index: -1; /* 层级设为-1，确保在所有内容下方，不遮挡主内容 */
 
-  /* 2. 延迟渲染优化：避免阻塞LCP绘制 */
-  will-change: transform, filter; /* 提示浏览器该元素后续有变换/滤镜操作，提前准备GPU资源，不阻塞初始绘制 */
-
-  /* 3. 渲染范围限制：减少少响布局响主内容 */
-  contain: layout paint; /* 告诉浏览器：该元素的布局和绘制制不会影响外部，独立优化渲染，减少重排重绘范围 */
+  contain: layout paint;
 }
 
 /* 首页入场动画：等待加载层移除后再展开 */
@@ -130,7 +126,6 @@ body.home-entered .Copyright-container {
     justify-content: center; /* 垂直居中 */
     align-items: center; /* 水平居中 */
     z-index: 9999; /* 层级最高，确保在最上层显示 */
-    position: fixed;
     overflow: hidden;
     opacity: 0;
     animation: loader-container-fade 0.45s ease forwards;
@@ -153,7 +148,6 @@ body.home-entered .Copyright-container {
     transform-origin: center;
     pointer-events: none;
     z-index: 0;
-    will-change: transform, filter;
     contain: layout paint;
     opacity: 1;
 }
@@ -393,14 +387,12 @@ header {
 .logo {
     color: #ffffff; /* 文字颜色为白色 */
     font-weight: bold; /* 字体加粗 */
-    text-align: undefined; /* 未定义对齐方式（可能为冗余代码） */
     width: 20%; /* 宽度占20% */
     float: left; /* 左浮动 */
     margin-top: 15px; /* 上外边距15px */
     margin-left: 25px; /* 左外边距25px */
     letter-spacing: 0px; /* 字间距0px */
     margin-bottom: 20px; /* 下外边距20px */
-    font-weight: bold; /* 重复设置字体加粗 */
     transition: all 0.3s linear; /* 所有属性变化时的过渡动画，0.3秒线性过渡 */
 }
 
@@ -646,10 +638,6 @@ ul li:hover a {
     line-height: 45px; /* 行高45px */
     white-space: nowrap; /* 不换行 */
     z-index: 10; /* 层级10 */
-    position: absolute; /* 绝对定位 */
-    top: 270px; /* 距离容器顶部270px */
-    left: 50%; /* 水平方向居中（左边缘在50%位置） */
-    transform: translateX(-50%); /* 水平向左移动自身50%宽度，实现精准居中 */
 }
 /* 光标闪烁动画：模拟打字时的光标效果 */
 @keyframes blink {
@@ -743,6 +731,7 @@ ul li:hover a {
     max-width: 100%; /* 最大宽度不超过父元素 */
     min-width: 200px; /* 最小宽度200px，小屏幕下不致过窄 */
     width: 70%; /* 容器宽度为父元素的70% */
+    box-sizing: border-box;
     transition: opacity 0.4s ease; /* 透明度过渡，0.4秒缓动 */
     backdrop-filter: blur(16px) saturate(128%);
     -webkit-backdrop-filter: blur(16px) saturate(128%);
@@ -751,11 +740,22 @@ ul li:hover a {
 /* 可折叠容器标题栏样式 */
 .collapsible-header {
     display: flex; /* 启用flex布局 */
+    width: 100%;
     align-items: center; /* 子元素垂直居中 */
     justify-content: space-between; /* 子元素两端对齐，标题在左，指示器在右 */
     padding: 20px 22px; /* 更宽松的苹果风内边距 */
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
     cursor: pointer; /* 鼠标悬浮时显示指针，提示可点击折叠/展开 */
     transition: background-color 0.2s ease; /* 背景色过渡，0.2秒缓动 */
+}
+
+.collapsible-header:focus-visible {
+    outline: 3px solid rgba(52, 152, 219, 0.55);
+    outline-offset: -3px;
 }
 
 /* 标题栏悬停效果 */
@@ -904,26 +904,26 @@ ul li:hover a {
   height: auto; /* 高度自动适应内容 */
 }
 
-/* 特殊标签样式：#buhui（不会） */
-#buhui {
+/* 特殊标签样式：不会 */
+.tag-item--unknown {
     background: rgba(255, 99, 99, 0.16); /* 更柔和的红色 */
     color: #b42318; /* 文本颜色 */
 }
 
-/* 特殊标签样式：#liaojie（了解） */
-#liaojie {
+/* 特殊标签样式：了解 */
+.tag-item--familiar {
     background: rgba(255, 214, 102, 0.22); /* 更柔和的黄色 */
     color: #9a6700; /* 文本颜色 */
 }
 
-/* 特殊标签样式：#yingyong（应用） */
-#yingyong {
+/* 特殊标签样式：应用 */
+.tag-item--applied {
     background: rgba(54, 197, 98, 0.18); /* 更柔和的绿色 */
     color: #166534; /* 文本颜色 */
 }
 
-/* 特殊标签样式：#jingtong（精通） */
-#jingtong {
+/* 特殊标签样式：精通 */
+.tag-item--proficient {
     background: linear-gradient(90deg, rgba(79, 172, 254, 0.22) 0%, rgba(0, 242, 254, 0.18) 100%); /* 更轻的渐变 */
     color: #1d4ed8;
 }
@@ -1539,9 +1539,9 @@ header.glass-nav nav.glass-nav-menu ul li a:focus-visible {
 }
 
 /* 统一课表、近期行程和友情链接的标题与分隔线 */
-.container3 h3,
-.course-table-container h3,
-.Friendship-Links-container h3 {
+.container3 > h3,
+.course-table-container > h3,
+.Friendship-Links-container > h3 {
     margin: 0 0 10px !important;
     text-align: center !important;
     font-size: 20px !important;
@@ -1854,11 +1854,81 @@ header.glass-nav nav.glass-nav-menu ul li a {
     width: 70%;
     max-width: 100%;
     min-width: 0;
-    padding: 24px 18px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.9);
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.46);
+    box-shadow:
+        0 18px 44px rgba(17, 24, 39, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
     box-sizing: border-box;
+}
+
+.Friendship-Links-container {
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    background: rgba(255, 255, 255, 0.46);
+    box-shadow:
+        0 18px 44px rgba(17, 24, 39, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px) saturate(128%);
+    -webkit-backdrop-filter: blur(16px) saturate(128%);
+}
+
+.course-table-container .collapsible-header {
+    min-height: 66px;
+}
+
+.collapsible-container .collapsible-header {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 80px;
+}
+
+.collapsible-container .collapsible-header .header-title {
+    margin: 0 !important;
+    text-align: left !important;
+    color: #26364a !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em;
+    text-transform: none;
+}
+
+.collapsible-container .collapsible-header .course-header-hint {
+    color: #526176;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.changelog-link {
+    display: block;
+    color: inherit;
+}
+
+.changelog-link .header-content {
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+.course-header-hint {
+    color: #8490a1;
+    font-size: 12px;
+    letter-spacing: 0;
+}
+
+.container3.collapsible-container {
+    padding: 0;
+    overflow: hidden;
+}
+
+.container3.collapsible-container .collapsible-content .content-inner {
+    padding: 16px 18px 22px;
+}
+
+.course-table-container .collapsible-content .content-inner {
+    padding: 18px 18px 22px;
 }
 
 .container3 {
@@ -2191,9 +2261,28 @@ header.glass-nav nav.glass-nav-menu ul li a {
         box-sizing: border-box;
     }
 
+    .collapsible-container {
+        width: 96%;
+        min-width: 0;
+    }
+
     .course-table-container {
         width: 96%;
-        padding: 20px 10px 22px;
+        padding: 0;
+    }
+
+    #tech-stack-container,
+    #changelog-container {
+        width: 96%;
+        min-width: 0;
+    }
+
+    .course-table-container .collapsible-content .content-inner {
+        padding: 16px 10px 18px;
+    }
+
+    .container3.collapsible-container .collapsible-content .content-inner {
+        padding: 14px 10px 18px;
     }
 
     .timetable-term {
@@ -2240,3 +2329,284 @@ header.glass-nav nav.glass-nav-menu ul li a {
     }
 }
 
+@media (max-width: 768px) {
+    header.glass-nav {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        width: min(94vw, 1100px) !important;
+        height: 62px !important;
+        min-height: 62px !important;
+        padding: 0 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    header.glass-nav .logo {
+        float: none !important;
+        flex: 0 0 auto;
+        margin: 0 !important;
+        line-height: normal !important;
+    }
+
+    header.glass-nav nav.glass-nav-menu {
+        float: none !important;
+        flex: 0 1 auto !important;
+        justify-content: flex-start !important;
+        min-width: 0;
+        max-width: 68%;
+        margin: 0 !important;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    header.glass-nav nav.glass-nav-menu ul {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        flex-direction: row !important;
+        width: max-content !important;
+        height: 62px !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        gap: 4px !important;
+    }
+
+    header.glass-nav nav.glass-nav-menu ul li {
+        display: block !important;
+        flex: 0 0 auto;
+        float: none !important;
+    }
+
+    header.glass-nav nav.glass-nav-menu ul li a {
+        height: 32px;
+        padding: 0 9px;
+        font-size: 0.74rem !important;
+    }
+}
+
+/* 首页内容与其他页面统一为轻柔的玻璃卡片风格 */
+body {
+    color: #26364a;
+    font-family: "SF Pro Display", "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.top-section {
+    width: min(1100px, calc(100% - 36px));
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container1,
+.collapsible-container,
+.course-table-container,
+.Friendship-Links-container {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 26px !important;
+    background: rgba(255, 255, 255, 0.54);
+    box-shadow:
+        0 18px 44px rgba(17, 24, 39, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(15px) saturate(135%);
+    -webkit-backdrop-filter: blur(15px) saturate(135%);
+}
+
+.container1 {
+    height: auto;
+    min-height: 0;
+    margin: 100px auto 20px;
+    padding: clamp(28px, 5vw, 52px) clamp(20px, 5vw, 56px) 30px;
+    color: #526176;
+    line-height: 1.8;
+}
+
+.container1::before {
+    content: none;
+}
+
+.container1 .avatra-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 18px;
+    border: 6px solid rgba(255, 255, 255, 0.86);
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 20px 42px rgba(31, 67, 117, 0.2);
+}
+
+.container1 h1 {
+    margin: 0;
+    color: #26364a;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 760;
+    letter-spacing: -0.055em;
+    line-height: 1.2;
+}
+
+.container1 #type-text {
+    position: static;
+    display: inline-block;
+    width: 17em;
+    max-width: 100%;
+    height: clamp(38px, 6vw, 54px);
+    margin: 6px auto 0;
+    border-right: 0;
+    animation: none;
+    text-align: left;
+    vertical-align: top;
+    color: #526f9b;
+    font-size: 1.05rem;
+    line-height: clamp(38px, 6vw, 54px);
+    white-space: nowrap;
+}
+
+.container1 .typewriter-cursor {
+    display: inline-block;
+    height: 1em;
+    margin-left: 1px;
+    border-right: 2px solid #526f9b;
+    animation: blink 0.8s infinite;
+    vertical-align: -0.12em;
+}
+
+.container1 .divider-solid {
+    width: min(100%, 680px);
+    height: 1px;
+    margin: 22px auto;
+    background: rgba(91, 119, 160, 0.2);
+}
+
+.container1 .home-welcome {
+    margin: 0 0 16px;
+    color: #1e3049;
+    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.container1 p {
+    max-width: 820px;
+    margin: 10px auto;
+    padding: 0;
+    color: #526176;
+    font-size: 0.94rem;
+    line-height: 1.85;
+    text-align: center;
+}
+
+.container1 p a {
+    color: #3569d4;
+    text-decoration: underline;
+    text-decoration-color: rgba(53, 105, 212, 0.3);
+    text-underline-offset: 3px;
+}
+
+.container1 p a:hover {
+    color: #244fa8;
+}
+
+.container1 .target-section {
+    margin-top: 8px;
+}
+
+.collapsible-container,
+.course-table-container,
+.Friendship-Links-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.Friendship-Links-container {
+    height: auto;
+    padding: 22px 24px 20px;
+}
+
+.Friendship-Links-container .friend-links-list {
+    padding-bottom: 0;
+}
+
+.Friendship-Links-container .friend-link-item {
+    margin-bottom: 4px;
+}
+
+.Friendship-Links-container .friend-link-item {
+    border: 1px solid rgba(91, 119, 160, 0.12);
+    background: rgba(255, 255, 255, 0.52);
+}
+
+.Friendship-Links-container .friend-link {
+    color: #526176;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.Friendship-Links-container .friend-link:hover {
+    color: #3569d4;
+    background-color: rgba(71, 125, 244, 0.09);
+}
+
+.Copyright-container {
+    margin: 4px auto 20px;
+    color: #526176;
+    text-align: center;
+}
+
+.Copyright-container .Copyright {
+    font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+    .top-section {
+        width: calc(100% - 24px);
+    }
+
+    .container1 {
+        margin-top: 96px;
+        padding: 28px 18px 24px;
+        border-radius: 22px !important;
+    }
+
+    .container1 .avatra-img {
+        width: 128px;
+        height: 128px;
+    }
+
+    .container1 p {
+        font-size: 0.88rem;
+    }
+
+    .collapsible-container,
+    .course-table-container,
+    .Friendship-Links-container {
+        width: 100%;
+        border-radius: 20px !important;
+    }
+
+    .Friendship-Links-container {
+        padding: 20px 14px 18px;
+    }
+}
+
+@media (max-width: 420px) {
+    .top-section {
+        width: calc(100% - 20px);
+    }
+
+    .container1 {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .container1 .avatra-img {
+        width: 112px;
+        height: 112px;
+    }
+
+    .container1 #type-text {
+        font-size: 0.9rem;
+    }
+
+    .container1 p {
+        overflow-wrap: anywhere;
+    }
+}

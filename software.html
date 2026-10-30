@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="学习软件合集：整理设计、开发、办公与多媒体领域的免费软件和官方教育授权入口。">
+    <meta name="keywords" content="学习软件,免费软件,教育授权,软件合集,雷洛Reillo">
+    <meta name="author" content="雷洛Reillo">
+    <link rel="preload" href="assets/bg.webp" as="image">
+    <link rel="stylesheet" href="css/software.css">
+    <link rel="stylesheet" href="css/site-navigation.css">
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <title>学习软件合集 - 雷洛Reillo</title>
+    <script src="js/software.js" defer></script>
+</head>
+<body>
+    <main class="software-shell">
+        <header class="site-nav">
+            <a class="site-nav-brand" href="index.html">雷洛Reillo</a>
+            <nav aria-label="主导航">
+                <ul class="site-nav-links">
+                    <li><a class="site-nav-link" href="index.html">主页</a></li>
+                    <li><a class="site-nav-link" href="about.html">关于</a></li>
+                    <li><a class="site-nav-link" href="photos.html">照片</a></li>
+                    <li><a class="site-nav-link" href="software.html" aria-current="page">学习软件</a></li>
+                    <li><a class="site-nav-link" href="tools.html">实用工具</a></li>
+                    <li><a class="site-nav-link" href="status.html">状态面板</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" aria-labelledby="page-title">
+            <p class="eyebrow">LEARN · CREATE · BUILD</p>
+            <h1 id="page-title">学习软件合集<span class="title-period">.</span></h1>
+            <p class="hero-description">从灵感设计到代码实践，收集适合学习使用的免费软件与官方教育资源。</p>
+
+            <label class="search-box">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <span class="visually-hidden">搜索软件</span>
+                <input id="software-search" type="search" placeholder="搜索软件名称或用途…" autocomplete="off">
+                <kbd>/</kbd>
+            </label>
+
+            <div class="hero-meta" aria-label="合集信息">
+                <span><i class="meta-dot" aria-hidden="true"></i>精选官方来源</span>
+                <span id="results-count" aria-live="polite">共 15 款软件</span>
+            </div>
+        </section>
+
+        <section class="catalog" aria-label="软件目录">
+            <aside class="category-panel">
+                <p class="panel-label">BROWSE BY</p>
+                <h2>软件分类</h2>
+                <div class="category-list" role="group" aria-label="按分类筛选">
+                    <button class="category-button active" type="button" data-category="all" aria-pressed="true">
+                        <span>全部软件</span><span class="category-count">15</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="design" aria-pressed="false">
+                        <span>设计与绘图</span><span class="category-count">4</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="development" aria-pressed="false">
+                        <span>开发与编程</span><span class="category-count">4</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="office" aria-pressed="false">
+                        <span>办公与学习</span><span class="category-count">2</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="media" aria-pressed="false">
+                        <span>音视频创作</span><span class="category-count">2</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="tools" aria-pressed="false">
+                        <span>实用工具</span><span class="category-count">3</span>
+                    </button>
+                </div>
+                <div class="license-note">
+                    <span class="license-icon" aria-hidden="true">✓</span>
+                    <p>仅收录免费软件或官方教育授权入口，请按官网说明确认资格与使用范围。</p>
+                </div>
+            </aside>
+
+            <div class="results-panel">
+                <div class="results-heading">
+                    <div>
+                        <p class="panel-label">THE TOOLKIT</p>
+                        <h2>找到你的下一款工具</h2>
+                    </div>
+                    <span class="sort-label">官方来源 ↗</span>
+                </div>
+
+                <div class="software-grid" id="software-grid">
+                    <article class="software-card" data-category="design" data-search="Blender 三维建模 动画 渲染 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-blender">B</span><span class="card-category">设计与绘图</span></div>
+                        <h3>Blender</h3>
+                        <p>开源的三维创作套件，涵盖建模、动画、渲染与合成。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://www.blender.org/download/" target="_blank" rel="noopener noreferrer" aria-label="访问 Blender 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="design" data-search="Krita 数字绘画 插画 绘图 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-krita">K</span><span class="card-category">设计与绘图</span></div>
+                        <h3>Krita</h3>
+                        <p>为数字绘画与插画创作打造的免费开源绘图软件。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://krita.org/en/download/" target="_blank" rel="noopener noreferrer" aria-label="访问 Krita 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="design" data-search="GIMP 图像编辑 修图 图片 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-gimp">G</span><span class="card-category">设计与绘图</span></div>
+                        <h3>GIMP</h3>
+                        <p>功能丰富的跨平台图像编辑器，适合修图与图像处理学习。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://www.gimp.org/downloads/" target="_blank" rel="noopener noreferrer" aria-label="访问 GIMP 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="design" data-search="Inkscape 矢量绘图 插画 SVG 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-inkscape">I</span><span class="card-category">设计与绘图</span></div>
+                        <h3>Inkscape</h3>
+                        <p>专注 SVG 矢量图形的开源工具，适合图标与插画设计。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://inkscape.org/release/" target="_blank" rel="noopener noreferrer" aria-label="访问 Inkscape 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="development" data-search="Visual Studio Code VS Code 代码 编辑器 编程 免费">
+                        <div class="card-top"><span class="app-icon icon-vscode">&lt;/&gt;</span><span class="card-category">开发与编程</span></div>
+                        <h3>Visual Studio Code</h3>
+                        <p>轻量且可扩展的代码编辑器，适合学习多种编程语言。</p>
+                        <div class="card-bottom"><span class="license-tag">免费使用</span><a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener noreferrer" aria-label="访问 Visual Studio Code 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="development" data-search="Python 编程语言 学习 官方 下载">
+                        <div class="card-top"><span class="app-icon icon-python">Py</span><span class="card-category">开发与编程</span></div>
+                        <h3>Python</h3>
+                        <p>广泛用于编程入门、自动化与数据分析的通用编程语言。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" aria-label="访问 Python 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="development" data-search="Git 版本控制 代码管理 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-git">git</span><span class="card-category">开发与编程</span></div>
+                        <h3>Git</h3>
+                        <p>记录代码变更、管理项目版本的分布式版本控制工具。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer" aria-label="访问 Git 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="development" data-search="Godot 游戏开发 引擎 2D 3D 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-godot">G</span><span class="card-category">开发与编程</span></div>
+                        <h3>Godot</h3>
+                        <p>免费开源的 2D 与 3D 游戏引擎，适合练习游戏开发。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://godotengine.org/download/" target="_blank" rel="noopener noreferrer" aria-label="访问 Godot 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="office" data-search="LibreOffice 办公 文档 表格 演示 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-libre">L</span><span class="card-category">办公与学习</span></div>
+                        <h3>LibreOffice</h3>
+                        <p>包含文档、表格与演示组件的免费开源办公套件。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://www.libreoffice.org/download/download-libreoffice/" target="_blank" rel="noopener noreferrer" aria-label="访问 LibreOffice 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="office" data-search="Microsoft 365 Education Office 教育版 学校 学生 在线办公">
+                        <div class="card-top"><span class="app-icon icon-office">M</span><span class="card-category">办公与学习</span></div>
+                        <h3>Microsoft 365 教育版</h3>
+                        <p>符合条件的学校邮箱可申请教育版服务，具体权益以官方说明为准。</p>
+                        <div class="card-bottom"><span class="license-tag education-tag">官方教育计划</span><a href="https://www.microsoft.com/education/products/office-365-education" target="_blank" rel="noopener noreferrer" aria-label="查看 Microsoft 365 教育版官方页面">查看资格 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="media" data-search="Audacity 音频 编辑 录音 剪辑 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-audacity">A</span><span class="card-category">音视频创作</span></div>
+                        <h3>Audacity</h3>
+                        <p>免费开源的音频录制与编辑工具，适合播客和声音制作入门。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://www.audacityteam.org/download/" target="_blank" rel="noopener noreferrer" aria-label="访问 Audacity 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="media" data-search="OBS Studio 直播 录屏 视频 开源 免费">
+                        <div class="card-top"><span class="app-icon icon-obs">OBS</span><span class="card-category">音视频创作</span></div>
+                        <h3>OBS Studio</h3>
+                        <p>用于录屏、直播与场景合成的免费开源软件。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://obsproject.com/download" target="_blank" rel="noopener noreferrer" aria-label="访问 OBS Studio 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="tools" data-search="7-Zip 压缩 解压 文件 免费">
+                        <div class="card-top"><span class="app-icon icon-zip">7z</span><span class="card-category">实用工具</span></div>
+                        <h3>7-Zip</h3>
+                        <p>轻巧高效的文件压缩与解压工具，支持多种常见格式。</p>
+                        <div class="card-bottom"><span class="license-tag">免费 · 开源</span><a href="https://www.7-zip.org/download.html" target="_blank" rel="noopener noreferrer" aria-label="访问 7-Zip 官方下载页">官方网站 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="tools" data-search="JetBrains 学生 开发 IDE 编程 教育授权">
+                        <div class="card-top"><span class="app-icon icon-jetbrains">JB</span><span class="card-category">实用工具</span></div>
+                        <h3>JetBrains 学生授权</h3>
+                        <p>符合资格的学生可申请官方教育授权，产品范围与资格要求请查看官网。</p>
+                        <div class="card-bottom"><span class="license-tag education-tag">官方教育计划</span><a href="https://www.jetbrains.com/community/education/#students" target="_blank" rel="noopener noreferrer" aria-label="查看 JetBrains 学生授权官方页面">查看资格 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="software-card" data-category="tools" data-search="Autodesk Education AutoCAD Fusion 3D 建模 学生 教育授权">
+                        <div class="card-top"><span class="app-icon icon-autodesk">Au</span><span class="card-category">实用工具</span></div>
+                        <h3>Autodesk 教育资源</h3>
+                        <p>查看 Autodesk 面向符合条件学生与教育者提供的软件及教育访问计划。</p>
+                        <div class="card-bottom"><span class="license-tag education-tag">官方教育计划</span><a href="https://www.autodesk.com/education/edu-software/overview" target="_blank" rel="noopener noreferrer" aria-label="查看 Autodesk 教育资源官方页面">查看资格 <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                </div>
+
+                <p class="empty-state" id="empty-state" hidden>没有找到匹配的软件，试试其他关键词或分类。</p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <p>软件版权归各自开发者所有。请从官方网站获取软件，并遵守对应的许可协议与教育计划条款。</p>
+            <a href="index.html">回到雷洛的小窝 <span aria-hidden="true">↑</span></a>
+        </footer>
+    </main>
+</body>
+</html>

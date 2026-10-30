@@ -21,7 +21,7 @@ body {
     padding: 24px;
     color: var(--text);
     font-family: "SF Pro Display", "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #ffffff;
+    background: #e7edf7;
     overflow-x: hidden;
 }
 
@@ -29,12 +29,16 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -1;
-    background: url("../assets/bg.webp") center / cover no-repeat;
+    z-index: 0;
+    background: #e7edf7 url("../assets/bg.webp") center / cover no-repeat;
     filter: blur(5px);
+    transform: scale(1.05);
+    pointer-events: none;
 }
 
 .status-shell {
+    position: relative;
+    z-index: 1;
     width: min(100%, 760px);
     min-height: calc(100vh - 48px);
     margin: 0 auto;
@@ -68,6 +72,14 @@ body::before {
     animation: status-fade-up 0.7s ease both;
 }
 
+.nav-links {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
 .brand,
 .nav-link {
     color: #ffffff;
@@ -95,6 +107,15 @@ body::before {
 .nav-link:hover {
     background: rgba(255, 255, 255, 0.18);
     transform: translateY(-1px);
+}
+
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.78);
+    outline-offset: 2px;
 }
 
 .status-card {
@@ -147,12 +168,37 @@ h1 {
     background: rgba(110, 220, 155, 0.14);
 }
 
+.status-indicator--unknown {
+    border-color: rgba(100, 116, 139, 0.2);
+    color: #64748b;
+    background: rgba(148, 163, 184, 0.12);
+}
+
 .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: #38b86d;
     box-shadow: 0 0 0 4px rgba(56, 184, 109, 0.14);
+}
+
+.status-indicator--unknown .status-dot,
+.service-state--unknown .status-dot {
+    background: #94a3b8;
+    box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.14);
+}
+
+.uptime-caption {
+    margin: 28px 0 -18px;
+    color: #475569;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.uptime-caption span {
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 400;
 }
 
 .uptime-grid {
@@ -228,30 +274,18 @@ h1 {
     font-weight: 600;
 }
 
-.availability-bar {
-    display: grid;
-    grid-template-columns: repeat(90, minmax(2px, 1fr));
-    gap: 3px;
-    margin-top: 12px;
-}
-
-.availability-day {
-    height: 22px;
-    border-radius: 4px;
-    background: #35ce7a;
-}
-
-.availability-day.unavailable {
-    background: #d8dde3;
+.service-state--unknown {
+    color: #64748b;
 }
 
 .service-meta {
-    margin-top: 7px;
+    margin: 10px 0 0;
     color: #94a3b8;
     font-size: 0.76rem;
+    line-height: 1.6;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 740px) {
     body {
         padding: 14px;
     }
@@ -265,22 +299,43 @@ h1 {
         border-radius: 22px;
     }
 
+    .glass-nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .nav-link {
+        flex: 0 0 auto;
+        padding: 0 10px;
+        font-size: 0.74rem;
+    }
+
+    .status-card {
+        margin-top: 40px;
+    }
+
     .uptime-grid {
         gap: 8px;
-    }
-
-    .availability-bar {
-        gap: 2px;
-    }
-
-    .availability-day {
-        height: 18px;
-        border-radius: 3px;
     }
 
     .uptime-unit {
         padding: 14px 6px;
         border-radius: 16px;
+    }
+}
+
+@media (max-width: 520px) {
+    .uptime-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 

@@ -12,18 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const secondsElement = uptime.querySelector('[data-seconds]');
     const updatedElement = document.querySelector('[data-updated]');
 
-    document.querySelectorAll('[data-availability]').forEach((bar) => {
-        const availability = Number(bar.dataset.availability);
-        const isAvailable = availability > 0;
-
-        for (let index = 0; index < 90; index += 1) {
-            const day = document.createElement('span');
-            day.className = isAvailable ? 'availability-day' : 'availability-day unavailable';
-            day.setAttribute('aria-hidden', 'true');
-            bar.appendChild(day);
-        }
-    });
-
     const updateUptime = () => {
         const elapsed = Math.max(0, Date.now() - launchTime.getTime());
         const totalSeconds = Math.floor(elapsed / 1000);

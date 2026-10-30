@@ -7,6 +7,7 @@
 	<title>页面不存在 - 雷洛Reillo</title>
 	<link rel="stylesheet" href="css/loader.css">
 	<link rel="stylesheet" href="css/404.css">
+	<link rel="stylesheet" href="css/site-navigation.css">
 	<script src="js/loader-container.js"></script>
 </head>
 <body>
@@ -16,26 +17,11 @@
 			<h1 class="loader-title">加载中</h1>
 			<p class="loader-subtext">正在准备错误页内容与资源，请稍候。</p>
 
-			<div class="loader-progress-wrap" aria-label="加载进度">
-				<div class="loader-progress-track">
-					<div class="loader-progress-fill"></div>
-				</div>
-				<div class="loader-progress-meta">
-					<span>正在加载</span>
-					<span>62%</span>
-				</div>
-			</div>
-
 			<div class="loader-footer-note">正在进入错误页</div>
 		</div>
 	</div>
 
 	<main class="page-shell">
-		<nav class="glass-nav" aria-label="错误页导航">
-			<span class="brand">雷洛Reillo</span>
-			<a class="nav-link" href="index.html">返回首页</a>
-		</nav>
-
 		<section class="error-card" aria-labelledby="error-title">
 			<p><p class="error-code" aria-hidden="true">404</p></p>
 			<h1 id="error-title">这个页面走丢了</h1>
@@ -46,5 +32,18 @@
 			</div>
 		</section>
 	</main>
+	<header class="site-nav">
+		<a class="site-nav-brand" href="index.html">雷洛Reillo</a>
+		<nav aria-label="主导航">
+			<ul class="site-nav-links">
+				<li><a class="site-nav-link" href="index.html">主页</a></li>
+				<li><a class="site-nav-link" href="about.html">关于</a></li>
+				<li><a class="site-nav-link" href="photos.html">照片</a></li>
+				<li><a class="site-nav-link" href="software.html">学习软件</a></li>
+				<li><a class="site-nav-link" href="tools.html">实用工具</a></li>
+				<li><a class="site-nav-link" href="status.html">状态面板</a></li>
+			</ul>
+		</nav>
+	</header>
 </body>
 </html>

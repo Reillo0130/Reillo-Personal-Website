@@ -1,8 +1,9 @@
 // 等 DOM 就绪后再启动打字效果，避免头部脚本早于页面元素执行
 document.addEventListener('DOMContentLoaded', function() {
     const typeEl = document.getElementById('type-text');
+    const textEl = typeEl?.querySelector('.typewriter-text');
 
-    if (!typeEl) {
+    if (!typeEl || !textEl) {
         return;
     }
 
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function type() {
         if (index < fullText.length) {
             currentText += fullText[index];
-            typeEl.textContent = currentText;
+            textEl.textContent = currentText;
             index++;
             setTimeout(type, typeSpeed);
         } else {
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function deleteText() {
         if (currentText.length > 0) {
             currentText = currentText.slice(0, -1);
-            typeEl.textContent = currentText;
+            textEl.textContent = currentText;
             setTimeout(deleteText, deleteSpeed);
         } else {
             index = 0;

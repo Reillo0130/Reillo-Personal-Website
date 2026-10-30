@@ -34,35 +34,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 加载更新日志的核心函数
     function loadChangelog(contentNode) {
-        // 先显示加载提示
-        contentNode.innerHTML = `
-            <div class="content-inner" id="changelogContent">
-                <div class="loading-tip">正在加载更新日志...</div>
-            </div>
-            <div class="changelog-jump-wrap">
-                <a href="changelog.html" class="jump-btn">跳转详情</a>
-            </div>
-        `;
+        const message = document.createElement('p');
+        message.className = 'loading-tip';
+        message.textContent = '正在加载更新日志...';
+        contentNode.replaceChildren(message);
 
-        // 加载changelog.html中2026-02-01的更新内容
+        const jumpWrap = document.createElement('div');
+        jumpWrap.className = 'changelog-jump-wrap';
+        jumpWrap.innerHTML = '<a href="changelog.html" class="jump-btn">跳转详情</a>';
+        contentNode.append(jumpWrap);
+
+        if (window.location.protocol === 'file:') {
+            message.className = 'load-error';
+            message.textContent = '本地 file:// 预览不支持读取其他页面的内容，请打开完整更新日志。';
+            return;
+        }
+
         fetch('changelog.html')
-            .then(res => res.ok ? res.text() : Promise.reject('加载失败'))
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error(`加载失败（HTTP ${res.status}）`);
+                }
+                return res.text();
+            })
             .then(html => {
                 const doc = new DOMParser().parseFromString(html, 'text/html');
-                const targetItem = doc.querySelector('.update-item[data-update-date="2026-02-01"]');
-                const changelogContent = document.getElementById('changelogContent');
-                
+                const targetItem = Array.from(doc.querySelectorAll('.update-item[data-type="actual"][data-update-date]'))
+                    .sort((a, b) => b.dataset.updateDate.localeCompare(a.dataset.updateDate))[0];
+
                 if (targetItem) {
-                    changelogContent.innerHTML = targetItem.outerHTML;
+                    contentNode.querySelector('.loading-tip')?.remove();
+                    contentNode.prepend(document.importNode(targetItem, true));
                 } else {
-                    changelogContent.innerHTML = '<p class="no-data">暂无2026年更新日志</p>';
+                    message.className = 'no-data';
+                    message.textContent = '暂无更新日志。';
                 }
             })
             .catch(err => {
                 console.error('日志加载失败:', err);
-                document.getElementById('changelogContent').innerHTML = '<p class="load-error">日志加载失败，点击「跳转详情」查看</p>';
+                message.className = 'load-error';
+                message.textContent = `日志加载失败：${err instanceof Error ? err.message : String(err)}。可打开完整更新日志查看。`;
             });
     }
 });

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="雷洛Reillo实用工具箱：图片与文本处理、相机快门查询，以及 IP、IPv6、NAT、子网、DNS、RDAP 和网络延迟工具。">
+    <meta name="keywords" content="图片格式转换,图片压缩,文本统计,相机快门数,IPv6查询,公网IP,NAT检测,IP归属地,子网计算,DNS查询,RDAP,在线工具">
+    <meta name="author" content="雷洛Reillo">
+    <link rel="preload" href="assets/bg.webp" as="image">
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="css/site-navigation.css">
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <script src="js/tools.js" defer></script>
+    <title>实用工具 - 雷洛Reillo</title>
+</head>
+<body>
+    <main class="software-shell">
+        <header class="site-nav">
+            <a class="site-nav-brand" href="index.html">雷洛Reillo</a>
+            <nav aria-label="主导航">
+                <ul class="site-nav-links">
+                    <li><a class="site-nav-link" href="index.html">主页</a></li>
+                    <li><a class="site-nav-link" href="about.html">关于</a></li>
+                    <li><a class="site-nav-link" href="photos.html">照片</a></li>
+                    <li><a class="site-nav-link" href="software.html">学习软件</a></li>
+                    <li><a class="site-nav-link" href="tools.html" aria-current="page">实用工具</a></li>
+                    <li><a class="site-nav-link" href="status.html">状态面板</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" aria-labelledby="page-title">
+            <p class="eyebrow">SMALL TOOLS, RIGHT HERE</p>
+            <h1 id="page-title" tabindex="-1">实用工具箱<span class="title-period">.</span></h1>
+            <p class="hero-description">挑选一个顺手的小工具，直接在当前页面完成操作。</p>
+
+            <label class="search-box">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <span class="visually-hidden">搜索工具</span>
+                <input id="tool-search" type="search" placeholder="搜索工具名称或用途…" autocomplete="off">
+                <kbd>/</kbd>
+            </label>
+
+            <div class="hero-meta" id="tool-meta" aria-label="工具箱信息">
+                <span><i class="meta-dot" aria-hidden="true"></i>图片本地处理 · 网络检测需联网</span>
+                <span id="results-count" aria-live="polite">共 4 款工具</span>
+            </div>
+        </section>
+
+        <section class="catalog" id="catalog-section" aria-label="实用工具目录">
+            <aside class="category-panel">
+                <p class="panel-label">BROWSE BY</p>
+                <h2>工具分类</h2>
+                <div class="category-list" role="group" aria-label="按分类筛选">
+                    <button class="category-button active" type="button" data-category="all" aria-pressed="true">
+                        <span>全部工具</span><span class="category-count">4</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="image" aria-pressed="false">
+                        <span>图片处理</span><span class="category-count">1</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="text" aria-pressed="false">
+                        <span>文本效率</span><span class="category-count">1</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="camera" aria-pressed="false">
+                        <span>摄影工具</span><span class="category-count">1</span>
+                    </button>
+                    <button class="category-button" type="button" data-category="network" aria-pressed="false">
+                        <span>网络工具合集</span><span class="category-count">1</span>
+                    </button>
+                </div>
+                <div class="license-note">
+                    <span class="license-icon" aria-hidden="true">✓</span>
+                    <p>图片和子网计算在本地完成；网络查询会连接各工具注明的外部服务。请从右侧选择工具开始使用。</p>
+                </div>
+            </aside>
+
+            <div class="results-panel">
+                <div class="results-heading">
+                    <div>
+                        <p class="panel-label">THE TOOLKIT</p>
+                        <h2>选择你需要的工具</h2>
+                    </div>
+                    <span class="sort-label">点击卡片开始使用</span>
+                </div>
+
+                <div class="software-grid" id="tool-grid">
+                    <article class="software-card" data-category="image" data-search="图片格式转换 PNG JPG JPEG WebP 图片压缩 调整尺寸 缩小 图像">
+                        <div class="card-top"><span class="app-icon icon-image">▧</span><span class="card-category">图片处理</span></div>
+                        <h3>图片格式转换</h3>
+                        <p>转换 PNG、JPG、WebP 格式，按比例缩小尺寸并调整压缩质量。</p>
+                        <div class="card-bottom"><span class="license-tag">本地处理</span><button class="tool-launch" type="button" data-tool="image">开始使用 <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                    <article class="software-card" data-category="text" data-search="文本统计 字数 字符 数量 空格 行数 复制 文字">
+                        <div class="card-top"><span class="app-icon icon-text">Aa</span><span class="card-category">文本效率</span></div>
+                        <h3>文本统计</h3>
+                        <p>统计字符、非空白字符、空格分隔词数与行数，也可以一键复制文本。</p>
+                        <div class="card-bottom"><span class="license-tag">即时统计</span><button class="tool-launch" type="button" data-tool="text">开始使用 <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                    <article class="software-card" data-category="camera" data-search="相机 快门数 快门次数 shutter count actuation Canon Nikon Sony Fujifilm Fuji Olympus OM Panasonic Lumix Pentax Ricoh Leica Hasselblad Sigma RAW">
+                        <div class="card-top"><span class="app-icon icon-camera">S</span><span class="card-category">摄影工具</span></div>
+                        <h3>相机快门数查询</h3>
+                        <p>基于 ExifTool 读取多品牌照片或 RAW 文件中的快门计数，支持范围取决于机型。</p>
+                        <div class="card-bottom"><span class="license-tag">本地解析</span><button class="tool-launch" type="button" data-tool="camera">开始使用 <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                    <article class="software-card" data-category="network" data-search="网络工具合集 IP 地址查询 我的 IP 公网 IPv4 IPv6 NAT 子网 DNS RDAP 延迟 归属地">
+                        <div class="card-top"><span class="app-icon icon-network">IP</span><span class="card-category">网络工具合集</span></div>
+                        <h3>网络工具合集</h3>
+                        <p>查询我的 IP 和 IP 归属地，或使用 IPv6、NAT、子网、DNS、RDAP 与网络延迟工具。</p>
+                        <div class="card-bottom"><span class="license-tag">8 项网络功能</span><button class="tool-launch" type="button" data-tool="network-hub">打开合集 <span aria-hidden="true">↗</span></button></div>
+                    </article>
+                </div>
+
+                <p class="empty-state" id="empty-state" hidden>没有找到匹配的工具，试试其他关键词或分类。</p>
+            </div>
+        </section>
+
+        <section class="tool-workspace" id="tool-workspace" hidden>
+            <button class="back-to-tools" id="back-to-tools" type="button"><span aria-hidden="true">←</span> 返回工具列表</button>
+
+            <section class="tool-panel" id="image-tool" hidden aria-labelledby="image-tool-title">
+                <div class="tool-heading">
+                    <div>
+                        <p class="eyebrow">IMAGE WORKSHOP / 01</p>
+                        <h2 id="image-tool-title" tabindex="-1">图片格式转换</h2>
+                        <p>转换 PNG、JPG、WebP 等常见图片，并可调整尺寸与压缩质量。</p>
+                    </div>
+                    <span class="tool-icon" aria-hidden="true">▧</span>
+                </div>
+
+                <div class="image-workspace">
+                    <div class="image-input-column">
+                        <label class="drop-zone" id="image-drop-zone" for="image-file">
+                            <input id="image-file" type="file" accept="image/*">
+                            <span class="upload-icon" aria-hidden="true">↑</span>
+                            <strong>选择图片，或拖放到这里</strong>
+                            <span>支持常见图片格式；动图仅转换首帧，JPG 透明区域填充白色（建议单张不超过 30 MB）</span>
+                        </label>
+
+                        <div class="image-preview" id="image-preview" hidden>
+                            <img id="image-preview-img" alt="待转换图片预览">
+                            <div class="preview-meta">
+                                <strong id="image-file-name"></strong>
+                                <span id="image-file-info"></span>
+                                <button class="replace-image-button" id="replace-image-button" type="button">更换图片</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="image-options">
+                        <label class="field-label" for="output-format">输出格式</label>
+                        <select id="output-format">
+                            <option value="image/png">PNG</option>
+                            <option value="image/jpeg">JPG</option>
+                            <option value="image/webp">WebP</option>
+                        </select>
+
+                        <div class="dimension-fields">
+                            <label>
+                                <span class="field-label">最大宽度</span>
+                                <input id="max-width" type="number" min="1" max="20000" placeholder="原始尺寸">
+                            </label>
+                            <label>
+                                <span class="field-label">最大高度</span>
+                                <input id="max-height" type="number" min="1" max="20000" placeholder="原始尺寸">
+                            </label>
+                        </div>
+                        <p class="field-hint">留空保持原尺寸；填写后将按比例缩小，不会放大图片。</p>
+
+                        <label class="quality-label" for="image-quality">
+                            <span class="field-label">压缩质量</span>
+                            <span id="quality-value">85%</span>
+                        </label>
+                        <input id="image-quality" class="quality-slider" type="range" min="10" max="100" value="85">
+                        <p class="field-hint">仅对 JPG 和 WebP 生效，PNG 为无损格式。</p>
+
+                        <button class="primary-button" id="convert-button" type="button" disabled>转换并下载</button>
+                        <p class="tool-status" id="image-status" aria-live="polite">请先选择一张图片。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tool-panel text-tool" id="text-tool" hidden aria-labelledby="text-tool-title">
+                <div class="tool-heading">
+                    <div>
+                        <p class="eyebrow">TEXT HELPER / 02</p>
+                        <h2 id="text-tool-title" tabindex="-1">文本统计</h2>
+                        <p>快速查看字数、字符数和行数，也可以一键复制文本。</p>
+                    </div>
+                    <span class="tool-icon" aria-hidden="true">Aa</span>
+                </div>
+
+                <label class="visually-hidden" for="text-input">输入要统计的文本</label>
+                <textarea id="text-input" rows="7" placeholder="在这里粘贴或输入文本…"></textarea>
+                <div class="text-stats" aria-live="polite">
+                    <div><strong id="char-count">0</strong><span>字符</span></div>
+                    <div><strong id="compact-count">0</strong><span>字符（不含空白）</span></div>
+                    <div><strong id="word-count">0</strong><span>词数（按空格分隔）</span></div>
+                    <div><strong id="line-count">0</strong><span>行</span></div>
+                </div>
+                <div class="text-actions">
+                    <span class="tool-status" id="text-status" aria-live="polite"></span>
+                    <button class="secondary-button" id="copy-text-button" type="button" disabled>复制文本</button>
+                </div>
+            </section>
+
+            <section class="tool-panel camera-tool" id="camera-tool" hidden aria-labelledby="camera-tool-title">
+                <div class="tool-heading">
+                    <div>
+                        <p class="eyebrow">CAMERA CHECK / 03</p>
+                        <h2 id="camera-tool-title" tabindex="-1">相机快门数查询</h2>
+                        <p>选择相机直出的 JPEG 或 RAW 文件，尝试读取文件内记录的快门计数。</p>
+                    </div>
+                    <span class="tool-icon" aria-hidden="true">S</span>
+                </div>
+
+                <details class="camera-supported">
+                    <summary>查看快门计数支持范围与品牌</summary>
+                    <div class="camera-supported-content">
+                        <p>当前版本识别 ExifTool 中有明确快门计数字段的常见品牌：</p>
+                        <ul>
+                            <li><strong>Canon</strong> — ShutterCount、ImageCount</li>
+                            <li><strong>Nikon</strong> — ShutterCount、MechanicalShutterCount、ImageCount</li>
+                            <li><strong>Sony</strong> — ShutterCount、ShutterCount2/3、ImageCount</li>
+                            <li><strong>Fujifilm</strong> — ImageCount、ExposureCount</li>
+                            <li><strong>Pentax</strong> — ShutterCount</li>
+                        </ul>
+                        <p>这些是品牌级的字段范围，不代表该品牌每一款机型都会写入快门数。Olympus/OM System、Panasonic/Lumix、Leica、Ricoh 等相机的 EXIF 信息也可能被读取，但快门计数是否可用取决于机型、固件和文件内容。更多 MakerNotes 字段请查看 <a href="https://exiftool.org/TagNames/" target="_blank" rel="noopener noreferrer">ExifTool 标签文档</a>。</p>
+                    </div>
+                </details>
+
+                <label class="camera-drop-zone" id="camera-drop-zone" for="camera-file">
+                    <input id="camera-file" type="file" accept="image/*,.jpg,.jpeg,.tif,.tiff,.dng,.3fr,.ari,.arw,.bay,.cap,.cin,.cr2,.cr3,.crw,.dcs,.dcr,.drf,.eip,.erf,.fff,.gpr,.iiq,.k25,.kdc,.mdc,.mef,.mos,.mrw,.nef,.nrw,.obm,.orf,.pef,.ptx,.pxn,.r3d,.raf,.raw,.rwl,.rw2,.sr2,.srf,.srw,.x3f">
+                    <span class="upload-icon" aria-hidden="true">↑</span>
+                    <strong>选择照片，或拖放相机文件到这里</strong>
+                    <span>支持 JPEG、TIFF、DNG 及常见 RAW（CR2/CR3、NEF、ARW、RAF、RW2、ORF 等）；读取元数据，不解码 RAW 画面</span>
+                </label>
+
+                <div class="camera-file-summary" id="camera-file-summary" hidden>
+                    <div><strong id="camera-file-name"></strong><span id="camera-file-size"></span></div>
+                    <button class="replace-image-button" id="replace-camera-file" type="button">更换文件</button>
+                </div>
+
+                <button class="primary-button camera-query-button" id="camera-query-button" type="button" disabled>查询快门数</button>
+                <p class="tool-status camera-status" id="camera-status" aria-live="polite">照片仅在本机解析，不会上传。只有使用此工具时才会从 CDN 加载约 8 MB 的 ExifTool 解析引擎；失败后可重新点击查询。</p>
+
+                <div class="camera-result" id="camera-result" hidden>
+                    <p class="camera-result-label">读取结果</p>
+                    <div class="camera-metadata" id="camera-metadata"></div>
+                    <div class="camera-count" id="camera-count"></div>
+                    <details class="exif-details" id="exif-details" hidden>
+                        <summary>查看其他 EXIF 信息</summary>
+                        <p class="exif-privacy-note">只显示文件中实际存在的信息。若原片包含 GPS 坐标，也会在下方列出；内容仅显示在本机。</p>
+                        <div id="exif-groups"></div>
+                    </details>
+                </div>
+
+                <p class="camera-disclaimer">可读取常见 RAW 文件内的 EXIF/MakerNotes 元数据，但支持依文件与相机机型而异；这不等于解码或预览 RAW 画面。大尺寸 RAW 可能需要较多内存。查不到快门数不代表快门数为零。由 <a href="https://exiftool.org/" target="_blank" rel="noopener noreferrer">ExifTool</a> WebAssembly 本地解析，解析引擎首次使用时通过 CDN 下载约 8 MB；所选照片不会发送到网络。</p>
+            </section>
+
+            <section class="tool-panel network-hub" id="network-hub-tool" hidden aria-labelledby="network-hub-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK TOOLKIT</p><h2 id="network-hub-title" tabindex="-1">网络工具合集</h2><p>先查看本机网络地址，也可以查询任意 IP 的归属信息。其他网络工具在下方。</p></div><span class="tool-icon" aria-hidden="true">IP</span></div>
+
+                <div class="network-home-grid">
+                    <section class="network-home-card" aria-labelledby="my-ip-title">
+                        <div class="network-home-card-heading"><div><p class="panel-label">MY IP</p><h3 id="my-ip-title">我的 IP 地址</h3></div><button class="secondary-button network-test-button" id="refresh-my-ip" type="button">刷新地址</button></div>
+                        <dl class="network-result-list my-ip-results" id="my-ip-details">
+                            <dt>公网 IPv4</dt><dd id="my-ipv4-value">正在查询…</dd>
+                            <dt>公网 IPv6</dt><dd id="my-ipv6-value">正在查询…</dd>
+                            <dt>内网 IP</dt><dd id="my-private-ip-value">正在检测…</dd>
+                        </dl>
+                        <p class="network-tool-note">公网地址通过 ipify 查询，服务方可看到出口 IP。内网地址受浏览器 WebRTC 隐私策略限制，可能无法读取。</p>
+                    </section>
+
+                    <section class="network-home-card" aria-labelledby="ip-query-title">
+                        <div class="network-home-card-heading"><div><p class="panel-label">IP LOOKUP</p><h3 id="ip-query-title">IP 地址查询</h3></div></div>
+                        <label class="field-label network-field-label" for="ip-lookup-input">查询任意 IPv4 / IPv6</label>
+                        <div class="network-form-row">
+                            <input class="network-input" id="ip-lookup-input" type="text" inputmode="url" autocomplete="off" placeholder="例如：8.8.8.8">
+                            <button class="secondary-button network-test-button" id="ip-lookup-button" type="button">查询归属地</button>
+                        </div>
+                        <p class="network-test-result" id="ip-lookup-status" aria-live="polite">输入 IP 地址后查询国家/地区、运营商和 ASN。</p>
+                        <dl class="network-result-list" id="ip-lookup-details" hidden></dl>
+                        <p class="network-tool-note">查询时会将输入的 IP 发送给 ipwho.is。地理位置是数据库估算值，不代表精确的个人位置。</p>
+                    </section>
+                </div>
+
+                <section class="network-subtools" aria-labelledby="network-subtools-title">
+                    <div class="results-heading">
+                        <div><p class="panel-label">NETWORK TOOLS</p><h3 id="network-subtools-title">网络工具</h3></div>
+                        <span class="sort-label">选择工具开始使用</span>
+                    </div>
+                    <div class="network-subtool-grid">
+                        <button class="network-subtool-card" type="button" data-network-tool="ipv4"><span class="network-subtool-icon">4</span><strong>公网 IPv4 查询</strong><span>查看 IPv4 出口地址</span></button>
+                        <button class="network-subtool-card" type="button" data-network-tool="ipv6"><span class="network-subtool-icon">6</span><strong>IPv6 连通性</strong><span>测试 IPv6 公网访问</span></button>
+                        <button class="network-subtool-card" type="button" data-network-tool="nat"><span class="network-subtool-icon">N</span><strong>NAT 映射探测</strong><span>比较 STUN 映射特征</span></button>
+                        <button class="network-subtool-card" type="button" data-network-tool="subnet"><span class="network-subtool-icon">/</span><strong>IPv4 子网计算</strong><span>本地计算 CIDR 网段</span></button>
+                        <button class="network-subtool-card" type="button" data-network-tool="dns"><span class="network-subtool-icon">D</span><strong>DNS 记录查询</strong><span>查找常见 DNS 记录</span></button>
+                        <button class="network-subtool-card" type="button" data-network-tool="whois"><span class="network-subtool-icon">R</span><strong>WHOIS / RDAP</strong><span>查询公开注册资料</span></button>
+                        <button class="network-subtool-card" type="button" data-network-tool="latency"><span class="network-subtool-icon">ms</span><strong>网络延迟测试</strong><span>测量 HTTPS DNS 响应</span></button>
+                    </div>
+                </section>
+            </section>
+
+            <section class="tool-panel network-tool" id="ipv4-tool" hidden aria-labelledby="ipv4-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 04</p><h2 id="ipv4-tool-title" tabindex="-1">公网 IPv4 查询</h2><p>查询当前网络对外显示的 IPv4 出口地址。</p></div><span class="tool-icon" aria-hidden="true">4</span></div>
+                <button class="secondary-button network-test-button" id="ipv4-test-button" type="button">查询 IPv4</button>
+                <p class="network-test-result" id="ipv4-result" aria-live="polite">尚未检测</p>
+                <p class="network-tool-note">检测请求会发送到 ipify；该服务可看到请求的出口 IP。结果仅显示在本页，不由本站保存。</p>
+            </section>
+
+            <section class="tool-panel network-tool" id="ipv6-tool" hidden aria-labelledby="ipv6-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 05</p><h2 id="ipv6-tool-title" tabindex="-1">IPv6 连通性查询</h2><p>连接 IPv6 专用服务，检查当前网络是否能通过 IPv6 访问公网。</p></div><span class="tool-icon" aria-hidden="true">6</span></div>
+                <button class="secondary-button network-test-button" id="ipv6-test-button" type="button">检测 IPv6</button>
+                <p class="network-test-result" id="ipv6-result" aria-live="polite">尚未检测</p>
+                <p class="network-tool-note">IPv6 检测请求会发送到 ipify IPv6 端点；服务方可看到出口地址。连接失败也可能由防火墙或服务限制导致。</p>
+            </section>
+
+            <section class="tool-panel network-tool" id="nat-tool" hidden aria-labelledby="nat-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 06</p><h2 id="nat-tool-title" tabindex="-1">NAT 映射探测</h2><p>比较不同 STUN 服务观察到的 WebRTC 公网映射。</p></div><span class="tool-icon" aria-hidden="true">N</span></div>
+                <button class="secondary-button network-test-button" id="nat-test-button" type="button">探测 NAT 特征</button>
+                <p class="network-test-result" id="nat-result" aria-live="polite">尚未检测</p>
+                <p class="network-tool-note">Google 和 Cloudflare STUN 服务会收到探测包并可看到网络出口地址与端口。浏览器测试不能完成 RFC 5780 完整映射/过滤测试，因此只报告可观测特征，不判定 Full Cone、Restricted 或 Symmetric 等 NAT 类型。</p>
+            </section>
+
+            <section class="tool-panel network-tool" id="subnet-tool" hidden aria-labelledby="subnet-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 08</p><h2 id="subnet-tool-title" tabindex="-1">IPv4 子网计算器</h2><p>在本地计算 CIDR 网络、掩码及主机地址范围，不会发送输入内容。</p></div><span class="tool-icon" aria-hidden="true">/</span></div>
+                <label class="field-label network-field-label" for="subnet-input">IPv4 地址 / CIDR 前缀</label>
+                <div class="network-form-row">
+                    <input class="network-input" id="subnet-input" type="text" inputmode="url" autocomplete="off" placeholder="例如：192.168.1.10/24">
+                    <button class="secondary-button network-test-button" id="subnet-button" type="button">计算子网</button>
+                </div>
+                <p class="network-test-result" id="subnet-status" aria-live="polite">支持 IPv4 CIDR，例如 192.168.1.10/24。</p>
+                <dl class="network-result-list" id="subnet-details" hidden></dl>
+            </section>
+
+            <section class="tool-panel network-tool" id="dns-tool" hidden aria-labelledby="dns-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 09</p><h2 id="dns-tool-title" tabindex="-1">DNS 记录查询</h2><p>通过 Cloudflare DNS over HTTPS 查询常见 DNS 记录。</p></div><span class="tool-icon" aria-hidden="true">DNS</span></div>
+                <label class="field-label network-field-label" for="dns-name-input">域名</label>
+                <div class="network-form-row">
+                    <input class="network-input" id="dns-name-input" type="text" inputmode="url" autocomplete="off" placeholder="例如：example.com">
+                    <select class="network-select" id="dns-type-select" aria-label="DNS 记录类型">
+                        <option value="A">A</option><option value="AAAA">AAAA</option><option value="CNAME">CNAME</option><option value="MX">MX</option><option value="NS">NS</option><option value="TXT">TXT</option><option value="SOA">SOA</option>
+                    </select>
+                    <button class="secondary-button network-test-button" id="dns-button" type="button">查询 DNS</button>
+                </div>
+                <p class="network-test-result" id="dns-status" aria-live="polite">输入域名并选择记录类型。</p>
+                <ul class="network-answer-list" id="dns-answers" hidden></ul>
+                <p class="network-tool-note">查询会发送到 Cloudflare DNS 服务；该服务会看到所查询的域名与记录类型。</p>
+            </section>
+
+            <section class="tool-panel network-tool" id="whois-tool" hidden aria-labelledby="whois-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 10</p><h2 id="whois-tool-title" tabindex="-1">WHOIS / RDAP 查询</h2><p>查询域名或 IP 的公开注册资料；网页使用现代 RDAP HTTPS 接口。</p></div><span class="tool-icon" aria-hidden="true">R</span></div>
+                <label class="field-label network-field-label" for="rdap-input">域名或 IP 地址</label>
+                <div class="network-form-row">
+                    <input class="network-input" id="rdap-input" type="text" inputmode="url" autocomplete="off" placeholder="例如：example.com 或 8.8.8.8">
+                    <button class="secondary-button network-test-button" id="rdap-button" type="button">查询 RDAP</button>
+                </div>
+                <p class="network-test-result" id="rdap-status" aria-live="polite">查询结果由 RDAP 注册机构提供。</p>
+                <dl class="network-result-list" id="rdap-details" hidden></dl>
+                <p class="network-tool-note">查询目标会发送给 rdap.org 并可能转发至相应注册机构。注册机构、顶级域名和隐私策略不同，结果字段可能不完整；遇到浏览器跨域限制时，可使用 <a id="rdap-fallback-link" href="https://rdap.org/" target="_blank" rel="noopener noreferrer">RDAP 查询页面</a>。</p>
+            </section>
+
+            <section class="tool-panel network-tool" id="latency-tool" hidden aria-labelledby="latency-tool-title">
+                <div class="tool-heading"><div><p class="eyebrow">NETWORK CHECK / 11</p><h2 id="latency-tool-title" tabindex="-1">网络延迟测试</h2><p>测量浏览器向公共 DNS 服务发出的 HTTPS DNS 查询往返时间。</p></div><span class="tool-icon" aria-hidden="true">ms</span></div>
+                <button class="secondary-button network-test-button" id="latency-button" type="button">测试网络延迟</button>
+                <p class="network-test-result" id="latency-status" aria-live="polite">点击开始进行多次 HTTPS DNS 查询。</p>
+                <div class="network-answer-list" id="latency-results" hidden></div>
+                <p class="network-tool-note">这是 HTTPS DNS 请求的近似往返时间，不是 ICMP Ping，也不能代表所有网站或游戏服务器的延迟。Cloudflare 与 Google DNS 会收到查询。</p>
+            </section>
+        </section>
+
+        <footer class="page-footer">
+            <p>图片转换与 IPv4 子网计算在本地进行；IP 归属、DNS、RDAP、IP 检测及延迟工具会按功能连接所标注的外部服务。</p>
+            <a href="index.html">回到雷洛的小窝 <span aria-hidden="true">↑</span></a>
+        </footer>
+    </main>
+</body>
+</html>

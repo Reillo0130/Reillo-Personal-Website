@@ -1,0 +1,167 @@
+.site-nav {
+    position: fixed;
+    z-index: 9998;
+    top: 14px;
+    left: 50%;
+    display: flex;
+    width: min(92vw, 1160px);
+    height: 62px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 28px;
+    background:
+        radial-gradient(ellipse at 50% 48%,
+            rgba(255, 255, 255, 0.055) 0%,
+            rgba(255, 255, 255, 0.028) 48%,
+            rgba(255, 255, 255, 0.085) 82%,
+            rgba(255, 255, 255, 0.012) 100%);
+    box-shadow:
+        0 22px 36px rgba(31, 91, 145, 0.18),
+        0 5px 16px rgba(255, 255, 255, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.34),
+        inset 0 -2px 5px rgba(28, 93, 153, 0.13);
+    backdrop-filter: blur(1.5px) saturate(145%) brightness(1.04);
+    -webkit-backdrop-filter: blur(1.5px) saturate(145%) brightness(1.04);
+    isolation: isolate;
+    overflow: hidden;
+    transform: translateX(-50%);
+}
+
+.site-nav::before,
+.site-nav::after {
+    position: absolute;
+    inset: -12px;
+    border-radius: inherit;
+    content: "";
+    pointer-events: none;
+}
+
+.site-nav::before {
+    padding: 12px;
+    background:
+        radial-gradient(ellipse at center,
+            transparent 0 62%,
+            rgba(255, 255, 255, 0.04) 68%,
+            rgba(255, 255, 255, 0.22) 77%,
+            rgba(255, 255, 255, 0.46) 84%,
+            rgba(255, 255, 255, 0.08) 91%,
+            transparent 100%),
+        conic-gradient(from 215deg at 50% 50%,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.62),
+            rgba(154, 220, 255, 0.30),
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.48),
+            rgba(255, 255, 255, 0.05));
+    filter: blur(5px) saturate(130%);
+    opacity: 0.66;
+}
+
+.site-nav::after {
+    inset: -4px;
+    background:
+        radial-gradient(ellipse at center,
+            transparent 0 66%,
+            rgba(255, 255, 255, 0.02) 69%,
+            rgba(255, 255, 255, 0.16) 73%,
+            rgba(126, 211, 252, 0.26) 78%,
+            rgba(255, 255, 255, 0.34) 82%,
+            transparent 91%),
+        linear-gradient(112deg,
+            transparent 0 14%,
+            rgba(255, 255, 255, 0.50) 19%,
+            rgba(136, 220, 255, 0.24) 23%,
+            transparent 29% 100%);
+    filter: blur(3px) saturate(160%);
+    mix-blend-mode: screen;
+    opacity: 0.68;
+    transform: translateX(-34%) rotate(-3deg);
+}
+
+.site-nav-brand,
+.site-nav-links {
+    position: relative;
+    z-index: 1;
+}
+
+.site-nav-brand {
+    flex: 0 0 auto;
+    color: rgba(255, 255, 255, 0.96);
+    font-family: "SF Pro Display", "SF Pro Text", "SFUIText", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.89rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.site-nav-links {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-nav-link {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.03);
+    font-family: "SF Pro Display", "SF Pro Text", "SFUIText", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-decoration: none;
+    text-shadow: none;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible,
+.site-nav-link[aria-current="page"] {
+    border-color: rgba(255, 255, 255, 0.24);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.site-nav-link:focus-visible,
+.site-nav-brand:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.88);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .site-nav {
+        width: min(94vw, 1100px);
+        padding: 0 12px;
+        border-radius: 22px;
+    }
+
+    .site-nav-links {
+        max-width: 68%;
+        gap: 4px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .site-nav-link {
+        min-height: 32px;
+        padding: 0 9px;
+        font-size: 0.74rem;
+    }
+}
